@@ -35,6 +35,7 @@ namespace WindBot.Game.AI.Decks
             public const int CalledbyTheGrave = 24224830;
             public const int InfiniteImpermanence = 10045474;
             public const int SolemnStrike = 40605147;
+            public const int CosmicCyclone = 8267140;
 
             public const int DragunofRedEyes = 37818794;
             public const int SeaMonsterofTheseus = 96334243;
@@ -57,7 +58,8 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.DragunofRedEyes, DragunofRedEyesCounter);
 
             AddExecutor(ExecutorType.Activate, CardId.MaxxC, DefaultMaxxC);
-            AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster);
+            //AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster);
+            AddExecutor(ExecutorType.Activate, CardId.CosmicCyclone, DefaultCosmicCyclone);
 
             AddExecutor(ExecutorType.Activate, CardId.DragunofRedEyes, DragunofRedEyesDestroy);
             AddExecutor(ExecutorType.Activate, CardId.ThousandEyesRestrict, ThousandEyesRestrictEffect);
@@ -106,6 +108,7 @@ namespace WindBot.Game.AI.Decks
 
             AddExecutor(ExecutorType.SpellSet, CardId.InfiniteImpermanence, TrapSet);
             AddExecutor(ExecutorType.SpellSet, CardId.SolemnStrike, TrapSet);
+            AddExecutor(ExecutorType.SpellSet, CardId.CosmicCyclone, TrapSet);
 
             AddExecutor(ExecutorType.MonsterSet, CardId.Sangan);
 
@@ -198,7 +201,7 @@ namespace WindBot.Game.AI.Decks
 
         private bool TourGuideFromTheUnderworldSummon()
         {
-            if (Bot.GetRemainingCount(CardId.TourGuideFromTheUnderworld, 2) == 0 && Bot.GetRemainingCount(CardId.Sangan, 2) == 0)
+            if (Bot.GetRemainingCount(CardId.TourGuideFromTheUnderworld, 2) == 0 && Bot.GetRemainingCount(CardId.Sangan, 1) == 0)
                 return false;
             return true;
         }
@@ -218,8 +221,8 @@ namespace WindBot.Game.AI.Decks
         {
             if (Bot.HasInMonstersZone(CardId.SalamangreatAlmiraj) && !Bot.HasInHand(CardId.CrusadiaArboria))
                 AI.SelectCard(CardId.CrusadiaArboria);
-            else if (!Bot.HasInHand(CardId.MaxxC))
-                AI.SelectCard(CardId.MaxxC);
+            //else if (!Bot.HasInHand(CardId.MaxxC))
+            //    AI.SelectCard(CardId.MaxxC);
             else if (!Bot.HasInHand(CardId.AshBlossomJoyousSpring))
                 AI.SelectCard(CardId.AshBlossomJoyousSpring);
             else if (!Bot.HasInHand(CardId.MagiciansSouls))
@@ -321,7 +324,8 @@ namespace WindBot.Game.AI.Decks
             {
                 int[] costs = new[] {
                     CardId.RedEyesInsight,
-                    CardId.RedEyesFusion
+                    CardId.RedEyesFusion,
+                    CardId.CosmicCyclone
                 };
                 if (Bot.HasInHand(costs))
                 {
