@@ -41,7 +41,8 @@ namespace WindBot.Game.AI.Decks
             public const int BorrelswordDragon = 85289965;
             public const int KnightmareGryphon = 65330383;
             public const int TopologicTrisbaena = 72529749;
-            public const int SummonSorceress = 61665245;
+            //public const int SummonSorceress = 61665245;
+            public const int DracoMastersOfTheTenyi = 23935886;
             public const int KnightmareUnicorn = 38342335;
             public const int KnightmarePhoenix = 2857636;
             public const int KnightmareCerberus = 75452921;
@@ -478,7 +479,8 @@ namespace WindBot.Game.AI.Decks
                     CardId.TopologicBomberDragon,
                     CardId.TopologicTrisbaena,
                     CardId.KnightmareGryphon,
-                    CardId.SummonSorceress,
+                    //CardId.SummonSorceress,
+                    CardId.DracoMastersOfTheTenyi,
                     CardId.BorreloadDragon
                     );
             }
