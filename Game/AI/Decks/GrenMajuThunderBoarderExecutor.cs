@@ -52,6 +52,7 @@ namespace WindBot.Game.AI.Decks
             public const int KnightmareUnicorn = 38342335;
             public const int KnightmarePhoenix = 2857636;
             public const int HeavymetalfoesElectrumite= 24094258;
+            public const int DragunOfRedEyes = 37818794;
             public const int KnightmareCerberus = 75452921;
             public const int CrystronNeedlefiber = 50588353;
             public const int MissusRadiant= 3987233;
@@ -585,6 +586,7 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(new[]
                 {                    
                     CardId.HeavymetalfoesElectrumite,
+                    CardId.DragunOfRedEyes,
                     CardId.BrandishMaidenKagari,
                     CardId.CrystronNeedlefiber,
                     CardId.RaidraptorUltimateFalcon,
