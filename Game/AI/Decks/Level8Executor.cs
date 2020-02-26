@@ -38,6 +38,7 @@ namespace WindBot.Game.AI.Decks
             public const int ChargeofTheLightBrigade = 94886282;
             public const int CalledbyTheGrave = 24224830;
             public const int SolemnStrike = 40605147;
+            public const int CosmicCyclone = 8267140;
 
             public const int WhiteAuraBihamut = 89907227;
             public const int BorreloadSavageDragon = 27548199;
@@ -60,7 +61,8 @@ namespace WindBot.Game.AI.Decks
         {
             AddExecutor(ExecutorType.Activate, CardId.CalledbyTheGrave, DefaultCalledByTheGrave);
             AddExecutor(ExecutorType.Activate, CardId.Raigeki);
-            AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster);
+            //AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster);
+            AddExecutor(ExecutorType.Activate, CardId.CosmicCyclone, DefaultCosmicCyclone);
 
             AddExecutor(ExecutorType.Repos, CardId.Number41BagooskaTheTerriblyTiredTapir, MonsterRepos);
 
@@ -174,8 +176,9 @@ namespace WindBot.Game.AI.Decks
 
             AddExecutor(ExecutorType.Summon, CardId.ScrapGolem, ScrapGolemSummon);
 
-            AddExecutor(ExecutorType.SpellSet, CardId.CalledbyTheGrave);
-            AddExecutor(ExecutorType.SpellSet, CardId.SolemnStrike);
+            AddExecutor(ExecutorType.SpellSet, CardId.CalledbyTheGrave, DefaultSpellSet);
+            AddExecutor(ExecutorType.SpellSet, CardId.SolemnStrike, DefaultSpellSet);
+            AddExecutor(ExecutorType.SpellSet, CardId.CosmicCyclone, DefaultSpellSet);
             AddExecutor(ExecutorType.Activate, CardId.SolemnStrike, DefaultSolemnStrike);
             AddExecutor(ExecutorType.Repos, MonsterRepos);
         }
