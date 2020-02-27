@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using WindBot;
 using WindBot.Game;
 using WindBot.Game.AI;
+using System;
 
 namespace WindBot.Game.AI.Decks
 {
@@ -28,6 +29,7 @@ namespace WindBot.Game.AI.Decks
             public const int DimensionalBarrier = 83326048;
             public const int CompulsoryEvacuationDevice = 94192409;
             public const int VanitysEmptiness = 5851097;
+            public const int Reqliate = 20426907;
             public const int SkillDrain = 82732705;
             public const int SolemnStrike = 40605147;
             public const int TheHugeRevolutionIsOver = 99188141;
@@ -73,6 +75,7 @@ namespace WindBot.Game.AI.Decks
 
             AddExecutor(ExecutorType.SpellSet, CardId.SkillDrain, TrapSetUnique);
             AddExecutor(ExecutorType.SpellSet, CardId.VanitysEmptiness, TrapSetUnique);
+            AddExecutor(ExecutorType.SpellSet, CardId.Reqliate, TrapSetUnique);
             AddExecutor(ExecutorType.SpellSet, CardId.DimensionalBarrier, TrapSetUnique);
             AddExecutor(ExecutorType.SpellSet, CardId.TorrentialTribute, TrapSetUnique);
             AddExecutor(ExecutorType.SpellSet, CardId.SolemnStrike, TrapSetUnique);
@@ -83,6 +86,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.SpellSet, CardId.Saqlifice, TrapSetWhenZoneFree);
             AddExecutor(ExecutorType.SpellSet, CardId.SkillDrain, TrapSetWhenZoneFree);
             AddExecutor(ExecutorType.SpellSet, CardId.VanitysEmptiness, TrapSetWhenZoneFree);
+            AddExecutor(ExecutorType.SpellSet, CardId.Reqliate, TrapSetWhenZoneFree);
             AddExecutor(ExecutorType.SpellSet, CardId.DimensionalBarrier, TrapSetWhenZoneFree);
             AddExecutor(ExecutorType.SpellSet, CardId.TorrentialTribute, TrapSetWhenZoneFree);
             AddExecutor(ExecutorType.SpellSet, CardId.SolemnStrike, TrapSetWhenZoneFree);
@@ -100,6 +104,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.SpellSet, CardId.Saqlifice, CardOfDemiseAcivated);
             AddExecutor(ExecutorType.SpellSet, CardId.SkillDrain, CardOfDemiseAcivated);
             AddExecutor(ExecutorType.SpellSet, CardId.VanitysEmptiness, CardOfDemiseAcivated);
+            AddExecutor(ExecutorType.SpellSet, CardId.Reqliate, CardOfDemiseAcivated);
             AddExecutor(ExecutorType.SpellSet, CardId.DimensionalBarrier, CardOfDemiseAcivated);
             AddExecutor(ExecutorType.SpellSet, CardId.TorrentialTribute, CardOfDemiseAcivated);
             AddExecutor(ExecutorType.SpellSet, CardId.SolemnStrike, CardOfDemiseAcivated);
@@ -113,6 +118,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.TheHugeRevolutionIsOver, DefaultTrap);
             AddExecutor(ExecutorType.Activate, CardId.SolemnStrike, DefaultSolemnStrike);
             AddExecutor(ExecutorType.Activate, CardId.SkillDrain, SkillDrainEffect);
+            AddExecutor(ExecutorType.Activate, CardId.Reqliate, ReqliateEffect);
             AddExecutor(ExecutorType.Activate, CardId.VanitysEmptiness, DefaultUniqueTrap);
             AddExecutor(ExecutorType.Activate, CardId.CompulsoryEvacuationDevice, DefaultCompulsoryEvacuationDevice);
             AddExecutor(ExecutorType.Activate, CardId.DimensionalBarrier, DefaultDimensionalBarrier);
@@ -164,12 +170,24 @@ namespace WindBot.Game.AI.Decks
             return (Bot.LifePoints > 1000) && DefaultUniqueTrap();
         }
 
+        private bool ReqliateEffect()
+        {
+            //Avoid having Re-qliate immediately sent to the graveyard by its own effect.
+            bool isOtherFaceUpQli(ClientCard card) => !card.IsCode(CardId.Reqliate) && card.IsFaceup() && card.HasSetcode(0xaa);
+            //If we have Skill Drain active, then Re-qliate is redundant.
+            //(Unless we care about banishing the opponent's L5+ monsters when they leave the field?)
+            return !Bot.HasInSpellZone(CardId.SkillDrain, true, true) &&
+                (Bot.MonsterZone.IsExistingMatchingCard(isOtherFaceUpQli) || Bot.SpellZone.IsExistingMatchingCard(isOtherFaceUpQli))
+                && DefaultUniqueTrap();
+        }
+
         private bool PotOfDualityEffect()
         {
             AI.SelectCard(
                 CardId.Scout,
                 CardId.SkillDrain,
                 CardId.VanitysEmptiness,
+                CardId.Reqliate,
                 CardId.DimensionalBarrier,
                 CardId.Stealth,
                 CardId.Shell,
