@@ -839,6 +839,10 @@ namespace WindBot.Game
                         long len = card.Update(packet, _duel);
                         packet.BaseStream.Position = pos + len;
                     }
+                    else
+                    {
+                        packet.BaseStream.Position += 2;
+                    }
                 }
             }
         }
@@ -1442,6 +1446,8 @@ namespace WindBot.Game
             int reply;
             if (desc == 30)
                 reply = _ai.OnSelectBattleReplay() ? 1 : 0;
+            else if (desc == 1989)
+                reply = 1;
             else
                 reply = _ai.OnSelectYesNo(desc) ? 1 : 0;
             Connection.Send(CtosMessage.Response, reply);
