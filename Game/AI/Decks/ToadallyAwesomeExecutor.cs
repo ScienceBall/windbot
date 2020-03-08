@@ -45,6 +45,8 @@ namespace WindBot.Game.AI.Decks
         public ToadallyAwesomeExecutor(GameAI ai, Duel duel)
             : base(ai, duel)
         {
+            AddExecutor(ExecutorType.Activate, _CardId.UpstartGoblin);
+
             AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster, DefaultHarpiesFeatherDusterFirst);
             AddExecutor(ExecutorType.Activate, CardId.GalaxyCyclone, DefaultGalaxyCyclone);
             AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster);
