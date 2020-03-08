@@ -58,7 +58,8 @@ namespace WindBot.Game.AI.Decks
         public RainbowExecutor(GameAI ai, Duel duel)
             : base(ai, duel)
         {
-            AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster);
+            //AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster);
+            AddExecutor(ExecutorType.Activate, _CardId.CosmicCyclone, DefaultCosmicCyclone);
 
             AddExecutor(ExecutorType.Activate, CardId.UnexpectedDai, UnexpectedDaiEffect);
 
