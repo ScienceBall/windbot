@@ -20,7 +20,7 @@ namespace WindBot.Game.AI.Decks
             public const int MaxxC = 23434538;
             public const int BlueEyesChaosMaxDragon = 55410871;
 
-            public const int CreatureSwap= 31036355;
+            public const int CreatureSwap = 31036355;
             public const int TheMelodyOfAwakeningDragon = 48800175;
             public const int UpstartGoblin = 70368879;
             public const int ChaosForm = 21082832;
@@ -31,7 +31,7 @@ namespace WindBot.Game.AI.Decks
             public const int RecklessGreed = 37576645;
 
             public const int BorreloadDragon = 31833038;
-            public const int BirrelswordDragon = 85289965;
+            public const int BorrelswordDragon = 85289965;
             public const int KnightmareGryphon = 65330383;
             public const int MissusRadiant = 3987233;            
             public const int LinkSpider = 98978921;
@@ -58,7 +58,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.TheMelodyOfAwakeningDragon, TheMelodyOfAwakeningDragoneff);
             //summon
             AddExecutor(ExecutorType.Summon, CardId.ManguOfTheTenTousandHands);
-            AddExecutor(ExecutorType.Activate, CardId.ManguOfTheTenTousandHands, TenTousandHandseff);
+            AddExecutor(ExecutorType.Activate, CardId.ManguOfTheTenTousandHands, TenThousandHandseff);
             AddExecutor(ExecutorType.Activate, DeviritualCheck);
             //ritual summon
             AddExecutor(ExecutorType.Activate, CardId.AdvancedRitualArt);
@@ -69,8 +69,8 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.Linkuriboh, Linkuriboheff);
             AddExecutor(ExecutorType.SpSummon, CardId.Linkuriboh, Linkuribohsp);
             AddExecutor(ExecutorType.SpSummon, CardId.LinkSpider);
-            AddExecutor(ExecutorType.SpSummon, CardId.BirrelswordDragon, BirrelswordDragonsp);
-            AddExecutor(ExecutorType.Activate, CardId.BirrelswordDragon, BirrelswordDragoneff);
+            AddExecutor(ExecutorType.SpSummon, CardId.BorrelswordDragon, BorrelswordDragonsp);
+            AddExecutor(ExecutorType.Activate, CardId.BorrelswordDragon, BorrelswordDragoneff);
             //set
             AddExecutor(ExecutorType.Activate, CardId.TheMelodyOfAwakeningDragon, TheMelodyOfAwakeningDragoneffsecond);
             AddExecutor(ExecutorType.SpellSet, SpellSet);
@@ -230,7 +230,7 @@ namespace WindBot.Game.AI.Decks
             }            
             return false;
         }
-        private bool TenTousandHandseff()
+        private bool TenThousandHandseff()
         {
             Count_check();
             if(Talismandra_count>=2 && Bot.GetRemainingCount(CardId.BlueEyesChaosMaxDragon,3)>0)
@@ -467,7 +467,7 @@ namespace WindBot.Game.AI.Decks
             if (Duel.LastChainPlayer == 0 && Util.GetLastChainCard().IsCode(CardId.Linkuriboh)) return false;
             return true;
         }
-        private bool BirrelswordDragonsp()
+        private bool BorrelswordDragonsp()
         {
            
             IList<ClientCard> material_list = new List<ClientCard>();
@@ -496,9 +496,9 @@ namespace WindBot.Game.AI.Decks
             return false;
         }
 
-        private bool BirrelswordDragoneff()
+        private bool BorrelswordDragoneff()
         {
-            if (ActivateDescription == Util.GetStringId(CardId.BirrelswordDragon, 0))
+            if (ActivateDescription == Util.GetStringId(CardId.BorrelswordDragon, 0))
             {                
                 if (Util.IsChainTarget(Card) && Util.GetBestEnemyMonster(true, true) != null)
                 {

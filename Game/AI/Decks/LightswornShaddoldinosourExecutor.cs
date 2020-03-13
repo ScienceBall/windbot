@@ -48,7 +48,7 @@ namespace WindBot.Game.AI.Decks
             //public const int ElShaddollFusion = 6417578;
 
             //trap
-            public const int infiniteTransience = 10045474;
+            public const int InfiniteImpermanence = 10045474;
             public const int LostWind = 74003290;
             public const int SinisterShadowGames = 77505534;
             public const int ShaddollCore = 4904633;
@@ -65,8 +65,8 @@ namespace WindBot.Game.AI.Decks
             public const int RedWyvern = 76547525;
             public const int CoralDragon = 42566602;
             public const int TG_WonderMagician = 98558751;
-            public const int MinervaTheExalte = 30100551;
-            public const int Sdulldeat = 74997493;
+            public const int MinervaTheExalted = 30100551;
+            public const int SaryujaSkullDread = 74997493;
             public const int CrystronNeedlefiber = 50588353;
         }
 
@@ -81,7 +81,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.MaxxC,MaxxC);
             //first do
             AddExecutor(ExecutorType.Activate, CardId.HarpiesFeatherDuster, DefaultHarpiesFeatherDusterFirst);
-            AddExecutor(ExecutorType.Activate, CardId.infiniteTransience, DefaultBreakthroughSkill);
+            AddExecutor(ExecutorType.Activate, CardId.InfiniteImpermanence, DefaultBreakthroughSkill);
             AddExecutor(ExecutorType.Activate, CardId.ThatGrassLooksgreener);
             AddExecutor(ExecutorType.Summon, CardId.SouleatingOviraptor);
             AddExecutor(ExecutorType.Activate, CardId.SouleatingOviraptor, SouleatingOviraptoreff);
@@ -111,7 +111,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.RedWyvern, RedWyverneff);
             AddExecutor(ExecutorType.Activate, CardId.CrystalWingSynchroDragon, CrystalWingSynchroDragoneff);
             AddExecutor(ExecutorType.Activate, CardId.BlackRoseMoonlightDragon, BlackRoseMoonlightDragoneff);
-            AddExecutor(ExecutorType.Activate, CardId.Sdulldeat, Sdulldeateff);
+            AddExecutor(ExecutorType.Activate, CardId.SaryujaSkullDread, SaryujaSkullDreadeff);
             AddExecutor(ExecutorType.Activate, CardId.Michael, Michaeleff);
             AddExecutor(ExecutorType.Activate, CardId.ScarlightRedDragon, ScarlightRedDragoneff);
             //Sp Summon
@@ -129,8 +129,8 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.Michael, Michaeleff);
             AddExecutor(ExecutorType.SpSummon, CardId.RedWyvern, RedWyvernsp);
             AddExecutor(ExecutorType.Activate, CardId.RedWyvern, RedWyverneff);
-            AddExecutor(ExecutorType.SpSummon, CardId.MinervaTheExalte);
-            AddExecutor(ExecutorType.Activate, CardId.MinervaTheExalte, MinervaTheExaltedEffect);
+            AddExecutor(ExecutorType.SpSummon, CardId.MinervaTheExalted);
+            AddExecutor(ExecutorType.Activate, CardId.MinervaTheExalted, MinervaTheExaltedEffect);
             AddExecutor(ExecutorType.SpSummon, CardId.CrystronNeedlefiber, CrystronNeedlefibersp);
             //Kaiju
             AddExecutor(ExecutorType.SpSummon, CardId.GamecieltheSeaTurtleKaiju, GamecieltheSeaTurtleKaijusp);            
@@ -158,7 +158,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.SpellSet, CardId.LostWind);
             AddExecutor(ExecutorType.SpellSet, CardId.SinisterShadowGames);
             AddExecutor(ExecutorType.SpellSet, CardId.ShaddollCore);
-            AddExecutor(ExecutorType.SpellSet, CardId.infiniteTransience, SetIsFieldEmpty);
+            AddExecutor(ExecutorType.SpellSet, CardId.InfiniteImpermanence, SetIsFieldEmpty);
             //trap activate
             AddExecutor(ExecutorType.Activate, CardId.LostWind, LostWindeff);
             AddExecutor(ExecutorType.Activate, CardId.SinisterShadowGames, SinisterShadowGameseff);
@@ -203,7 +203,7 @@ namespace WindBot.Game.AI.Decks
                 CardId.InterruptedKaijuSlumber,
                 //CardId.ElShaddollFusion,
 
-                CardId.infiniteTransience,
+                CardId.InfiniteImpermanence,
                 CardId.LostWind,
                 CardId.SinisterShadowGames,
                 CardId.ShaddollCore,
@@ -1157,7 +1157,7 @@ namespace WindBot.Game.AI.Decks
             return Duel.LastChainPlayer != 0;
         }
 
-        private bool Sdulldeateff()
+        private bool SaryujaSkullDreadeff()
         {
            /* if (snake_four_s)
             {

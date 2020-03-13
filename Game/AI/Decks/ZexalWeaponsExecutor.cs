@@ -39,7 +39,7 @@ namespace WindBot.Game.AI.Decks
             public const int FlameSwordsman = 45231177;
             public const int DarkfireDragon = 17881964;
             public const int GaiaDragonTheThunderCharger = 91949988;
-            public const int ZwLionArms = 60992364;
+            public const int ZwLeoArms = 60992364;
             public const int AdreusKeeperOfArmageddon = 94119480;
             public const int Number61Volcasaurus = 29669359;
             public const int GemKnightPearl = 71594310;
@@ -67,14 +67,14 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.SpSummon, CardId.NumberS39UtopiaOne);
             AddExecutor(ExecutorType.SpSummon, CardId.NumberS39UtopiatheLightning);
             AddExecutor(ExecutorType.SpSummon, CardId.Number61Volcasaurus, Number61Volcasaurus);
-            AddExecutor(ExecutorType.SpSummon, CardId.ZwLionArms);
+            AddExecutor(ExecutorType.SpSummon, CardId.ZwLeoArms);
             AddExecutor(ExecutorType.SpSummon, CardId.AdreusKeeperOfArmageddon);
 
             // XYZ effects
             AddExecutor(ExecutorType.Activate, CardId.Number39Utopia, Number39Utopia);
             AddExecutor(ExecutorType.Activate, CardId.NumberS39UtopiaOne);
             AddExecutor(ExecutorType.Activate, CardId.NumberS39UtopiatheLightning, DefaultNumberS39UtopiaTheLightningEffect);
-            AddExecutor(ExecutorType.Activate, CardId.ZwLionArms, ZwLionArms);
+            AddExecutor(ExecutorType.Activate, CardId.ZwLeoArms, ZwLeoArms);
             AddExecutor(ExecutorType.Activate, CardId.AdreusKeeperOfArmageddon);
             AddExecutor(ExecutorType.Activate, CardId.Number61Volcasaurus);
 
@@ -166,11 +166,11 @@ namespace WindBot.Game.AI.Decks
             return Util.IsOneEnemyBetterThanValue(2000, false);
         }
 
-        private bool ZwLionArms()
+        private bool ZwLeoArms()
         {
-            if (ActivateDescription == Util.GetStringId(CardId.ZwLionArms, 0))
+            if (ActivateDescription == Util.GetStringId(CardId.ZwLeoArms, 0))
                 return true;
-            if (ActivateDescription == Util.GetStringId(CardId.ZwLionArms, 1))
+            if (ActivateDescription == Util.GetStringId(CardId.ZwLeoArms, 1))
                 return !Card.IsDisabled() && ZwWeapon();
             return false;
         }

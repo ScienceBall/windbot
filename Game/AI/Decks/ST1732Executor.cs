@@ -13,14 +13,14 @@ namespace WindBot.Game.AI.Decks
         {
             public const int Digitron = 32295838;
             public const int Bitron = 36211150;
-            public const int DualAssembloom = 7445307;
-            public const int BootStagguard = 70950698;
+            public const int DualAssembwurm = 7445307;
+            public const int BootStaggered = 70950698;
             public const int Linkslayer = 35595518;
             public const int RAMClouder = 9190563;
             public const int ROMCloudia = 44956694;
             public const int BalancerLord = 8567955;
             public const int Backlinker = 71172240;
-            public const int Kleinant = 45778242;
+            public const int Cliant = 45778242;
             public const int Draconnet = 62706865;
             public const int DotScaper = 18789533;
 
@@ -73,7 +73,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.SpSummon, CardId.Backlinker);
             AddExecutor(ExecutorType.Activate, CardId.Backlinker, BacklinkerEffect);
 
-            AddExecutor(ExecutorType.Activate, CardId.BootStagguard, BootStagguardEffect);
+            AddExecutor(ExecutorType.Activate, CardId.BootStaggered, BootStaggeredEffect);
 
             AddExecutor(ExecutorType.Activate, CardId.MonsterReborn, MonsterRebornEffect);
             AddExecutor(ExecutorType.Activate, CardId.MoonMirrorShield, MoonMirrorShieldEffect);
@@ -89,8 +89,8 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Summon, CardId.Draconnet, DraconnetSummon);
             AddExecutor(ExecutorType.Activate, CardId.Draconnet, DraconnetEffect);
 
-            AddExecutor(ExecutorType.Summon, CardId.Kleinant);
-            AddExecutor(ExecutorType.Activate, CardId.Kleinant, KleinantEffect);
+            AddExecutor(ExecutorType.Summon, CardId.Cliant);
+            AddExecutor(ExecutorType.Activate, CardId.Cliant, CliantEffect);
 
             AddExecutor(ExecutorType.Summon, CardId.RAMClouder);
             AddExecutor(ExecutorType.Activate, CardId.RAMClouder, RAMClouderEffect);
@@ -176,7 +176,7 @@ namespace WindBot.Game.AI.Decks
             if (targets.Count > 0)
             {
                 AI.SelectCard(
-                    CardId.DualAssembloom,
+                    CardId.DualAssembwurm,
                     CardId.Bitron,
                     CardId.Digitron,
                     CardId.RecodedAlive
@@ -203,7 +203,7 @@ namespace WindBot.Game.AI.Decks
             return (Bot.MonsterZone[5] == null) && (Bot.MonsterZone[6] == null);
         }
 
-        private bool BootStagguardEffect()
+        private bool BootStaggeredEffect()
         {
             if (Card.Location != CardLocation.Hand)
                 AI.SelectPosition(CardPosition.FaceUpDefence);
@@ -218,14 +218,14 @@ namespace WindBot.Game.AI.Decks
                     CardId.TriGateWizard,
                     CardId.BinarySorceress,
                     CardId.Honeybot,
-                    CardId.DualAssembloom,
-                    CardId.BootStagguard,
+                    CardId.DualAssembwurm,
+                    CardId.BootStaggered,
                     CardId.BalancerLord,
                     CardId.ROMCloudia,
                     CardId.Linkslayer,
                     CardId.RAMClouder,
                     CardId.Backlinker,
-                    CardId.Kleinant
+                    CardId.Cliant
                 };
             if (!Bot.HasInGraveyard(targets))
             {
@@ -309,7 +309,7 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectNextCard(
                     CardId.ROMCloudia,
                     CardId.BalancerLord,
-                    CardId.Kleinant,
+                    CardId.Cliant,
                     CardId.Draconnet,
                     CardId.Backlinker
                     );
@@ -329,7 +329,7 @@ namespace WindBot.Game.AI.Decks
                 return true;
             bool hastarget = Bot.HasInHand(new[] {
                     CardId.Draconnet,
-                    CardId.Kleinant,
+                    CardId.Cliant,
                     CardId.BalancerLord,
                     CardId.ROMCloudia,
                     CardId.RAMClouder,
@@ -346,9 +346,9 @@ namespace WindBot.Game.AI.Decks
         private bool ROMCloudiaSummon()
         {
             return Bot.HasInGraveyard(new[] {
-                    CardId.BootStagguard,
+                    CardId.BootStaggered,
                     CardId.BalancerLord,
-                    CardId.Kleinant,
+                    CardId.Cliant,
                     CardId.Linkslayer,
                     CardId.Draconnet,
                     CardId.RAMClouder
@@ -360,9 +360,9 @@ namespace WindBot.Game.AI.Decks
             if (Card.Location == CardLocation.MonsterZone)
             {
                 AI.SelectCard(
-                    CardId.BootStagguard,
+                    CardId.BootStaggered,
                     CardId.BalancerLord,
-                    CardId.Kleinant,
+                    CardId.Cliant,
                     CardId.Linkslayer,
                     CardId.Draconnet,
                     CardId.RAMClouder
@@ -373,7 +373,7 @@ namespace WindBot.Game.AI.Decks
             {
                 AI.SelectCard(
                     CardId.BalancerLord,
-                    CardId.Kleinant,
+                    CardId.Cliant,
                     CardId.RAMClouder,
                     CardId.DotScaper
                     );
@@ -393,10 +393,10 @@ namespace WindBot.Game.AI.Decks
             return true;
         }
 
-        private bool KleinantEffect()
+        private bool CliantEffect()
         {
             IList<int> targets = new[] {
-                CardId.DualAssembloom,
+                CardId.DualAssembwurm,
                 CardId.Bitron,
                 CardId.Digitron,
                 CardId.DotScaper
@@ -443,8 +443,8 @@ namespace WindBot.Game.AI.Decks
                 CardId.TriGateWizard,
                 CardId.BinarySorceress,
                 CardId.Honeybot,
-                CardId.DualAssembloom,
-                CardId.BootStagguard,
+                CardId.DualAssembwurm,
+                CardId.BootStaggered,
                 CardId.BalancerLord,
                 CardId.ROMCloudia,
                 CardId.Linkslayer,

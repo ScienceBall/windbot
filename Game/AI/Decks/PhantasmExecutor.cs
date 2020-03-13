@@ -55,7 +55,7 @@ namespace WindBot.Game.AI.Decks
             public const int BrandishSkillJammingWave = 25955749;
             public const int BrandishSkillAfterburner = 99550630;
             public const int EternalSoul = 48680970;
-            public const int SuperboltThunderDragon = 15291624;
+            public const int ThunderDragonColossus = 15291624;
         }
 
         public PhantasmExecutor(GameAI ai, Duel duel)
@@ -188,9 +188,9 @@ namespace WindBot.Game.AI.Decks
                     AI.SelectCard(CardId.ElShaddollWinda);
                     return UniqueFaceupSpell();
                 }
-                if(Enemy.HasInMonstersZone(CardId.SuperboltThunderDragon))
+                if(Enemy.HasInMonstersZone(CardId.ThunderDragonColossus))
                 {
-                    AI.SelectCard(CardId.SuperboltThunderDragon);
+                    AI.SelectCard(CardId.ThunderDragonColossus);
                     return UniqueFaceupSpell();
                 }
             }            

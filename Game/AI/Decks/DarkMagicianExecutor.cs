@@ -13,8 +13,8 @@ namespace WindBot.Game.AI.Decks
         {
             public const int DarkMagician = 46986414;
             public const int GrinderGolem = 75732622;
-            public const int MagicianOfLllusion = 35191415;
-            public const int ApprenticeLllusionMagician = 30603688;
+            public const int MagicianOfDarkIllusion = 35191415;
+            public const int ApprenticeIllusionMagician = 30603688;
             public const int WindwitchGlassBell = 71007216;
             public const int MagiciansRod = 7084129;
             public const int WindwitchIceBell = 43722862;
@@ -29,7 +29,7 @@ namespace WindBot.Game.AI.Decks
             public const int UpstartGoblin = 70368879;
             public const int SpellbookOfSecrets = 89739383;
             public const int DarkMagicInheritance = 41735184;
-            public const int LllusionMagic = 73616671;
+            public const int IllusionMagic = 73616671;
             //public const int Scapegoat = 73915051;
             public const int DarkMagicalCircle = 47222536;
             public const int WonderWand = 67775894;
@@ -47,12 +47,12 @@ namespace WindBot.Game.AI.Decks
             public const int BigEye = 80117527;
             public const int TroymarePhoenix = 2857636;
             public const int TroymareCerberus = 75452921;
-            public const int ApprenticeWitchling = 71384012;
-            public const int VentriloauistsClaraAndLucika = 1482001;
-            /*public const int EbonLllusionMagician = 96471335;
+            public const int WeeWitchesApprentice = 71384012;
+            public const int ClaraAndRushkaTheVentriloduo = 1482001;
+            /*public const int EbonIllusionMagician = 96471335;
             public const int BorreloadDragon = 31833038;
             public const int SaryujaSkullDread = 74997493;
-            public const int Hidaruma = 64514892;
+            public const int FireFightingDarumaDoll = 64514892;
             public const int AkashicMagician = 28776350;
             public const int SecurityDragon = 99111753;
             public const int LinkSpider = 98978921;
@@ -61,14 +61,16 @@ namespace WindBot.Game.AI.Decks
             public const int HarpiesFeatherDuster = 18144506;
             public const int ElShaddollWinda = 94977269;
             public const int DarkHole = 53129443;
-            public const int Ultimate = 86221741;
-            public const int LockBird = 94145021;
-            public const int Ghost = 59438930;
+            public const int UltimateFalcon = 86221741;
+            public const int DrollAndLockBird = 94145021;
+            public const int GhostOgre = 59438930;
             public const int GiantRex = 80280944;
             public const int UltimateConductorTytanno = 18940556;
             public const int SummonSorceress = 61665245;
             public const int CrystronNeedlefiber = 50588353;
             public const int FirewallDragon = 5043010;
+
+            //TODO: Code for playing around Mekk-Knights should be finished and in DefaultExecutor instead.
             public const int JackKnightOfTheLavenderDust = 28692962;
             public const int JackKnightOfTheCobaltDepths = 92204263;
             public const int JackKnightOfTheCrimsonLotus = 56809158;
@@ -104,7 +106,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.SpellSet, CardId.EternalSoul, EternalSoulset);
             /*AddExecutor(ExecutorType.SpellSet, CardId.Scapegoat, Scapegoatset);            
             //sheep
-            AddExecutor(ExecutorType.SpSummon, CardId.Hidaruma, Hidarumasp);
+            AddExecutor(ExecutorType.SpSummon, CardId.FireFightingDarumaDoll, FireFightingDarumaDollsp);
             AddExecutor(ExecutorType.SpSummon, CardId.Linkuriboh, Linkuribohsp);
             AddExecutor(ExecutorType.Activate, CardId.Linkuriboh, Linkuriboheff);
             AddExecutor(ExecutorType.SpSummon, CardId.LinkSpider, Linkuribohsp);
@@ -138,24 +140,24 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.MagiciansRod, MagiciansRodeff);
             AddExecutor(ExecutorType.Summon, CardId.WindwitchGlassBell, WindwitchGlassBellsummon);
             //activate
-            AddExecutor(ExecutorType.Activate, CardId.LllusionMagic, LllusionMagiceff);
-            AddExecutor(ExecutorType.SpellSet, CardId.LllusionMagic, LllusionMagicset);
+            AddExecutor(ExecutorType.Activate, CardId.IllusionMagic, IllusionMagiceff);
+            AddExecutor(ExecutorType.SpellSet, CardId.IllusionMagic, IllusionMagicset);
             AddExecutor(ExecutorType.Activate, CardId.SpellbookOfKnowledge, SpellbookOfKnowledgeeff);
             AddExecutor(ExecutorType.Activate, CardId.WonderWand, WonderWandeff);
             AddExecutor(ExecutorType.Activate, CardId.TheEyeOfTimaeus, TheEyeOfTimaeuseff);
-            AddExecutor(ExecutorType.SpSummon, CardId.ApprenticeLllusionMagician, ApprenticeLllusionMagiciansp);
-            AddExecutor(ExecutorType.Activate, CardId.ApprenticeLllusionMagician, ApprenticeLllusionMagicianeff);
+            AddExecutor(ExecutorType.SpSummon, CardId.ApprenticeIllusionMagician, ApprenticeIllusionMagiciansp);
+            AddExecutor(ExecutorType.Activate, CardId.ApprenticeIllusionMagician, ApprenticeIllusionMagicianeff);
             //other thing                     
-            AddExecutor(ExecutorType.Activate, CardId.MagicianOfLllusion);
+            AddExecutor(ExecutorType.Activate, CardId.MagicianOfDarkIllusion);
             AddExecutor(ExecutorType.Activate, CardId.MagicianNavigation, MagicianNavigationeff);
             AddExecutor(ExecutorType.Activate, CardId.EternalSoul, EternalSouleff);
             AddExecutor(ExecutorType.SpSummon, CardId.BigEye, BigEyesp);
             AddExecutor(ExecutorType.Activate, CardId.BigEye, BigEyeeff);
             AddExecutor(ExecutorType.SpSummon, CardId.Dracossack, Dracossacksp);
             AddExecutor(ExecutorType.Activate, CardId.Dracossack, Dracossackeff);
-            AddExecutor(ExecutorType.SpSummon, CardId.ApprenticeWitchling, ApprenticeWitchlingsp);
-            AddExecutor(ExecutorType.Activate, CardId.ApprenticeWitchling, ApprenticeWitchlingeff);
-            AddExecutor(ExecutorType.SpSummon, CardId.VentriloauistsClaraAndLucika, VentriloauistsClaraAndLucikasp);
+            AddExecutor(ExecutorType.SpSummon, CardId.WeeWitchesApprentice, WeeWitchesApprenticesp);
+            AddExecutor(ExecutorType.Activate, CardId.WeeWitchesApprentice, WeeWitchesApprenticeeff);
+            AddExecutor(ExecutorType.SpSummon, CardId.ClaraAndRushkaTheVentriloduo, ClaraAndRushkaTheVentriloduosp);
             AddExecutor(ExecutorType.Repos, MonsterRepos);
         }
         private void EternalSoulSelect()
@@ -241,13 +243,13 @@ namespace WindBot.Game.AI.Decks
             ApprenticeLllusionMagician_count = 0;
             foreach (ClientCard count in Bot.GetMonsters())
             {
-                if (count.IsCode(CardId.ApprenticeLllusionMagician) && count.IsFaceup())
+                if (count.IsCode(CardId.ApprenticeIllusionMagician) && count.IsFaceup())
                     ApprenticeLllusionMagician_count++;
             }
             foreach (ClientCard dangerous in Enemy.GetMonsters())
             {
                 if (dangerous != null && dangerous.IsShouldNotBeTarget() && dangerous.Attack > 2500 &&
-                    !Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeLllusionMagician))
+                    !Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeIllusionMagician))
                 {
                     plan_C = true;
                     Logger.DebugWriteLine("*********dangerous = " + dangerous.Id);
@@ -351,7 +353,7 @@ namespace WindBot.Game.AI.Decks
                 int ghost_count = 0;
                 foreach (ClientCard check in Enemy.Graveyard)
                 {
-                    if (check.IsCode(CardId.Ghost))
+                    if (check.IsCode(CardId.GhostOgre))
                         ghost_count++;
                 }
                 if (ghost_count != ghost_done)
@@ -556,7 +558,7 @@ namespace WindBot.Game.AI.Decks
             return false;
         }
         
-        private bool Hidarumasp()
+        private bool FireFightingDarumaDollsp()
         {
             if (!Bot.HasInMonstersZone(CardId.Scapegoat + 1)) return false;
             if(Bot.MonsterZone[5]==null)
@@ -595,10 +597,10 @@ namespace WindBot.Game.AI.Decks
         }
         private bool BorreloadDragonsp()
         {
-            if(Bot.HasInMonstersZone(CardId.Hidaruma)&&
+            if(Bot.HasInMonstersZone(CardId.FireFightingDarumaDoll)&&
                 Bot.HasInMonstersZone(CardId.Linkuriboh))
             {
-                AI.SelectCard(new[] { CardId.Hidaruma, CardId.Linkuriboh, CardId.LinkSpider ,CardId.Linkuriboh});
+                AI.SelectCard(new[] { CardId.FireFightingDarumaDoll, CardId.Linkuriboh, CardId.LinkSpider ,CardId.Linkuriboh});
                 return true;
             }
             
@@ -685,7 +687,7 @@ namespace WindBot.Game.AI.Decks
             }
             if (Duel.Player == 1 && Duel.Phase == DuelPhase.BattleStart && Enemy.GetMonsterCount() > 0)
             {
-                if (Card.IsFacedown() && Bot.HasInMonstersZone(CardId.VentriloauistsClaraAndLucika))
+                if (Card.IsFacedown() && Bot.HasInMonstersZone(CardId.ClaraAndRushkaTheVentriloduo))
                 {
                     AI.SelectYesNo(false);
                     return true;
@@ -738,7 +740,7 @@ namespace WindBot.Game.AI.Decks
             }
             if (Duel.Phase == DuelPhase.End)
             {
-                if (Card.IsFacedown() && Bot.HasInMonstersZone(CardId.VentriloauistsClaraAndLucika))
+                if (Card.IsFacedown() && Bot.HasInMonstersZone(CardId.ClaraAndRushkaTheVentriloduo))
                 {
                     AI.SelectYesNo(false);
                     return true;
@@ -768,7 +770,7 @@ namespace WindBot.Game.AI.Decks
         private bool MagicianNavigationset()
         {
             if (Bot.GetHandCount() > 6) return true;
-            if (Bot.HasInSpellZone(CardId.LllusionMagic)) return true;
+            if (Bot.HasInSpellZone(CardId.IllusionMagic)) return true;
             if (Bot.HasInHand(CardId.DarkMagician) && !Bot.HasInSpellZone(CardId.MagicianNavigation))
                 return true;
             return false;
@@ -810,9 +812,9 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(CardId.DarkMagician);
                 ClientCard check = Util.GetOneEnemyBetterThanValue(2500, true);
                 if (check != null)
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 else
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 magician_sp = true;
                 return UniqueFaceupSpell();
             }
@@ -822,9 +824,9 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(CardId.DarkMagician);
                 ClientCard check = Util.GetOneEnemyBetterThanValue(2500, true);
                 if (check != null)
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 else
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 magician_sp = true;
                 return true;
             }
@@ -834,9 +836,9 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(CardId.DarkMagician);
                 ClientCard check = Util.GetOneEnemyBetterThanValue(2500, true);
                 if (check != null)
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 else
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 magician_sp = true;
                 return UniqueFaceupSpell();
             }
@@ -848,9 +850,9 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(CardId.DarkMagician);
                 ClientCard check = Util.GetOneEnemyBetterThanValue(2500, true);
                 if (check != null)
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 else
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 magician_sp = true;
                 return UniqueFaceupSpell();
             }
@@ -862,9 +864,9 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(CardId.DarkMagician);
                 ClientCard check = Util.GetOneEnemyBetterThanValue(2500, true);
                 if (check != null)
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 else
-                    AI.SelectNextCard(CardId.ApprenticeLllusionMagician, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                    AI.SelectNextCard(CardId.ApprenticeIllusionMagician, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 magician_sp = true;
                 return UniqueFaceupSpell();
             }
@@ -892,16 +894,16 @@ namespace WindBot.Game.AI.Decks
             }
             return true;
         }
-        private bool LllusionMagicset()
+        private bool IllusionMagicset()
         {
             if (Bot.GetMonsterCount() >= 1 &&
                 !(Bot.GetMonsterCount() == 1 && Bot.HasInMonstersZone(CardId.CrystalWingSynchroDragon)) &&
                 !(Bot.GetMonsterCount() == 1 && Bot.HasInMonstersZone(CardId.ClearWingFastDragon)) &&
-                !(Bot.GetMonsterCount() == 1 && Bot.HasInMonstersZone(CardId.VentriloauistsClaraAndLucika)))
+                !(Bot.GetMonsterCount() == 1 && Bot.HasInMonstersZone(CardId.ClaraAndRushkaTheVentriloduo)))
                 return true;
             return false;
         }
-        private bool LllusionMagiceff()
+        private bool IllusionMagiceff()
         {
             if (lockbird_used) return false;
             if (Duel.LastChainPlayer == 0) return false;
@@ -927,7 +929,7 @@ namespace WindBot.Game.AI.Decks
                 int ghost_count = 0;
                 foreach (ClientCard check in Enemy.Graveyard)
                 {
-                    if (check.IsCode(CardId.Ghost))
+                    if (check.IsCode(CardId.GhostOgre))
                         ghost_count++;
                 }
                 if (ghost_count != ghost_done)
@@ -990,20 +992,20 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectNextCard(CardId.DarkMagician, CardId.DarkMagician);
                 return true;
             }
-            if (Duel.Player == 1 && Bot.HasInMonstersZone(CardId.ApprenticeLllusionMagician) &&
+            if (Duel.Player == 1 && Bot.HasInMonstersZone(CardId.ApprenticeIllusionMagician) &&
                (Bot.HasInSpellZone(CardId.EternalSoul) || Bot.HasInSpellZone(CardId.MagicianNavigation)))
             {
-                AI.SelectCard(CardId.ApprenticeLllusionMagician);
+                AI.SelectCard(CardId.ApprenticeIllusionMagician);
                 AI.SelectNextCard(CardId.DarkMagician, CardId.DarkMagician);
                 return true;
             }
 
             if ((Bot.GetRemainingCount(CardId.DarkMagician, 3) > 1 || Bot.HasInGraveyard(CardId.DarkMagician)) &&
                 Bot.HasInSpellZone(CardId.MagicianNavigation) &&
-                (Bot.HasInMonstersZone(CardId.DarkMagician) || Bot.HasInMonstersZone(CardId.ApprenticeLllusionMagician)) &&
+                (Bot.HasInMonstersZone(CardId.DarkMagician) || Bot.HasInMonstersZone(CardId.ApprenticeIllusionMagician)) &&
                 Duel.Player == 1 && !Bot.HasInHand(CardId.DarkMagician))
             {
-                AI.SelectCard(CardId.DarkMagician, CardId.ApprenticeLllusionMagician);
+                AI.SelectCard(CardId.DarkMagician, CardId.ApprenticeIllusionMagician);
                 AI.SelectNextCard(CardId.DarkMagician, CardId.DarkMagician);
                 return true;
             }
@@ -1052,7 +1054,7 @@ namespace WindBot.Game.AI.Decks
             }
             Logger.DebugWriteLine("%%%%%%%%%%%%%%%%SpellCaster= " + count);
             if (lockbird_used) return false;
-            if (Bot.HasInSpellZone(CardId.LllusionMagic) && count < 2)
+            if (Bot.HasInSpellZone(CardId.IllusionMagic) && count < 2)
                 return false;
             //AI.SelectPlace(Zones.z2, 2);
             if (Bot.HasInMonstersZone(CardId.SpellbookMagicianOfProphecy) ||
@@ -1063,9 +1065,9 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(CardId.SpellbookMagicianOfProphecy, CardId.MagiciansRod, CardId.WindwitchGlassBell);
                 return true;
             }
-            if (Bot.HasInMonstersZone(CardId.ApprenticeLllusionMagician) && Bot.GetSpellCount() < 2 && Duel.Phase == DuelPhase.Main2)
+            if (Bot.HasInMonstersZone(CardId.ApprenticeIllusionMagician) && Bot.GetSpellCount() < 2 && Duel.Phase == DuelPhase.Main2)
             {
-                AI.SelectCard(CardId.ApprenticeLllusionMagician);
+                AI.SelectCard(CardId.ApprenticeIllusionMagician);
                 return true;
             }
             if (Bot.HasInMonstersZone(CardId.DarkMagician) &&
@@ -1089,7 +1091,7 @@ namespace WindBot.Game.AI.Decks
             Logger.DebugWriteLine("%%%%%%%%%%%%%%%%SpellCaster= " + count);
             if (Card.Location == CardLocation.Hand)
             {
-                if (Bot.HasInSpellZone(CardId.LllusionMagic) && count < 2)
+                if (Bot.HasInSpellZone(CardId.IllusionMagic) && count < 2)
                     return false;
                 //AI.SelectPlace(Zones.z2, 2);
                 if (Bot.HasInMonstersZone(CardId.SpellbookMagicianOfProphecy) ||
@@ -1112,14 +1114,14 @@ namespace WindBot.Game.AI.Decks
                     AI.SelectCard(CardId.DarkMagician);
                     return UniqueFaceupSpell();
                 }
-                if (Bot.HasInMonstersZone(CardId.ApprenticeLllusionMagician) && Bot.GetSpellCount() < 2 && Duel.Phase == DuelPhase.Main2)
+                if (Bot.HasInMonstersZone(CardId.ApprenticeIllusionMagician) && Bot.GetSpellCount() < 2 && Duel.Phase == DuelPhase.Main2)
                 {
-                    AI.SelectCard(CardId.ApprenticeLllusionMagician);
+                    AI.SelectCard(CardId.ApprenticeIllusionMagician);
                     return UniqueFaceupSpell();
                 }
-                if (Bot.HasInMonstersZone(CardId.ApprenticeLllusionMagician) && Bot.GetHandCount() <= 3 && Duel.Phase == DuelPhase.Main2)
+                if (Bot.HasInMonstersZone(CardId.ApprenticeIllusionMagician) && Bot.GetHandCount() <= 3 && Duel.Phase == DuelPhase.Main2)
                 {
-                    AI.SelectCard(CardId.ApprenticeLllusionMagician);
+                    AI.SelectCard(CardId.ApprenticeIllusionMagician);
                     return UniqueFaceupSpell();
                 }
             }
@@ -1143,7 +1145,7 @@ namespace WindBot.Game.AI.Decks
             return false;
         }
 
-        private bool ApprenticeLllusionMagiciansp()
+        private bool ApprenticeIllusionMagiciansp()
         {
             //AI.SelectPlace(Zones.z2, 1);
             if (Bot.HasInHand(CardId.DarkMagician) && !Bot.HasInSpellZone(CardId.MagicianNavigation))
@@ -1163,7 +1165,7 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(CardId.SpellbookOfSecrets, CardId.DarkMagicAttack);
                 return true;
             }
-            if (Bot.HasInMonstersZone(CardId.ApprenticeLllusionMagician))
+            if (Bot.HasInMonstersZone(CardId.ApprenticeIllusionMagician))
                 return false;
             int count = 0;
             foreach (ClientCard check in Bot.Hand)
@@ -1183,12 +1185,12 @@ namespace WindBot.Game.AI.Decks
                 Bot.GetMonsterCount()==0)
             {
                 AI.SelectPosition(CardPosition.FaceUpAttack);
-                AI.SelectCard(CardId.MagicianOfLllusion, CardId.ApprenticeLllusionMagician, CardId.TheEyeOfTimaeus, CardId.DarkMagicInheritance, CardId.WonderWand);
+                AI.SelectCard(CardId.MagicianOfDarkIllusion, CardId.ApprenticeIllusionMagician, CardId.TheEyeOfTimaeus, CardId.DarkMagicInheritance, CardId.WonderWand);
                 return true;
             }
             if (!Bot.HasInHandOrInMonstersZoneOrInGraveyard(CardId.DarkMagician))
             {
-                if (Bot.HasInHandOrInSpellZone(CardId.LllusionMagic) && Bot.GetMonsterCount() >= 1)
+                if (Bot.HasInHandOrInSpellZone(CardId.IllusionMagic) && Bot.GetMonsterCount() >= 1)
                     return false;
                 AI.SelectPosition(CardPosition.FaceUpAttack);
                 int Navigation_count = 0;
@@ -1202,14 +1204,14 @@ namespace WindBot.Game.AI.Decks
                     AI.SelectCard(CardId.MagicianNavigation);
                     return true;
                 }
-                AI.SelectCard(CardId.MagicianOfLllusion, CardId.ApprenticeLllusionMagician, CardId.TheEyeOfTimaeus, CardId.DarkMagicInheritance, CardId.WonderWand);
+                AI.SelectCard(CardId.MagicianOfDarkIllusion, CardId.ApprenticeIllusionMagician, CardId.TheEyeOfTimaeus, CardId.DarkMagicInheritance, CardId.WonderWand);
                 return true;
             }
             return false;
         }
-        private bool ApprenticeLllusionMagicianeff()
+        private bool ApprenticeIllusionMagicianeff()
         {
-            if (Util.ChainContainsCard(CardId.ApprenticeLllusionMagician)) return false;
+            if (Util.ChainContainsCard(CardId.ApprenticeIllusionMagician)) return false;
             if (Duel.Phase == DuelPhase.Battle ||
                 Duel.Phase == DuelPhase.BattleStart ||
                 Duel.Phase == DuelPhase.BattleStep ||
@@ -1279,31 +1281,31 @@ namespace WindBot.Game.AI.Decks
                 //AI.SelectPlace(Zones.z2, 2);
                 AI.SelectCard(spell);
                 if (Bot.HasInHandOrInSpellZone(CardId.EternalSoul) && Bot.HasInHandOrInSpellZone(CardId.DarkMagicalCircle))
-                    if (Bot.GetRemainingCount(CardId.DarkMagician, 3) >= 2 && !Bot.HasInHandOrInSpellZoneOrInGraveyard(CardId.LllusionMagic))
+                    if (Bot.GetRemainingCount(CardId.DarkMagician, 3) >= 2 && !Bot.HasInHandOrInSpellZoneOrInGraveyard(CardId.IllusionMagic))
                     {
-                        AI.SelectNextCard(CardId.LllusionMagic);
+                        AI.SelectNextCard(CardId.IllusionMagic);
                         return true;
                     }
 
-                if (Bot.HasInHand(CardId.ApprenticeLllusionMagician) &&
+                if (Bot.HasInHand(CardId.ApprenticeIllusionMagician) &&
                   (!Bot.HasInHandOrInSpellZone(CardId.EternalSoul) || !Bot.HasInHandOrInSpellZone(CardId.MagicianNavigation)))
                 {
                     AI.SelectNextCard(CardId.MagicianNavigation);
                     return true;
                 }
                 if (Bot.HasInHandOrInSpellZone(CardId.EternalSoul) && !Bot.HasInHandOrInMonstersZoneOrInGraveyard(CardId.DarkMagician) &&
-                    !Bot.HasInHandOrInSpellZoneOrInGraveyard(CardId.LllusionMagic))
+                    !Bot.HasInHandOrInSpellZoneOrInGraveyard(CardId.IllusionMagic))
                 {
-                    AI.SelectNextCard(CardId.LllusionMagic);
+                    AI.SelectNextCard(CardId.IllusionMagic);
                     return true;
                 }
 
                 if (Bot.HasInHandOrInSpellZone(CardId.MagicianNavigation) &&
                     !Bot.HasInHand(CardId.DarkMagician) &&
                     !Bot.HasInHandOrInSpellZone(CardId.EternalSoul) &&
-                    Bot.GetRemainingCount(CardId.LllusionMagic, 1) > 0)
+                    Bot.GetRemainingCount(CardId.IllusionMagic, 1) > 0)
                 {
-                    AI.SelectNextCard(CardId.LllusionMagic);
+                    AI.SelectNextCard(CardId.IllusionMagic);
                     return true;
                 }
 
@@ -1338,13 +1340,13 @@ namespace WindBot.Game.AI.Decks
             if (Card.Location == CardLocation.MonsterZone)
             {
                 if (Bot.HasInHandOrInSpellZone(CardId.EternalSoul) && Bot.HasInHandOrInSpellZone(CardId.DarkMagicalCircle))
-                    if (Bot.GetRemainingCount(CardId.DarkMagician, 3) >= 2 && Bot.GetRemainingCount(CardId.LllusionMagic, 1) > 0)
+                    if (Bot.GetRemainingCount(CardId.DarkMagician, 3) >= 2 && Bot.GetRemainingCount(CardId.IllusionMagic, 1) > 0)
                     {
-                        AI.SelectCard(CardId.LllusionMagic);
+                        AI.SelectCard(CardId.IllusionMagic);
                         return true;
                     }
 
-                if (Bot.HasInHand(CardId.ApprenticeLllusionMagician) &&
+                if (Bot.HasInHand(CardId.ApprenticeIllusionMagician) &&
                   !Bot.HasInHandOrInSpellZone(CardId.MagicianNavigation) &&
                   Bot.GetRemainingCount(CardId.MagicianNavigation, 3) > 0)
                 {
@@ -1354,18 +1356,18 @@ namespace WindBot.Game.AI.Decks
 
                 if (Bot.HasInHandOrInSpellZone(CardId.EternalSoul) &&
                     !Bot.HasInHandOrInMonstersZoneOrInGraveyard(CardId.DarkMagician) &&
-                    Bot.GetRemainingCount(CardId.LllusionMagic, 1) > 0)
+                    Bot.GetRemainingCount(CardId.IllusionMagic, 1) > 0)
                 {
-                    AI.SelectCard(CardId.LllusionMagic);
+                    AI.SelectCard(CardId.IllusionMagic);
                     return true;
                 }
 
                 if (Bot.HasInHandOrInSpellZone(CardId.MagicianNavigation) &&
                     !Bot.HasInHand(CardId.DarkMagician) &&
                     !Bot.HasInHandOrInSpellZone(CardId.EternalSoul) &&
-                    Bot.GetRemainingCount(CardId.LllusionMagic, 1) > 0)
+                    Bot.GetRemainingCount(CardId.IllusionMagic, 1) > 0)
                 {
-                    AI.SelectCard(CardId.LllusionMagic);
+                    AI.SelectCard(CardId.IllusionMagic);
                     return true;
                 }
                 if (!Bot.HasInHandOrInSpellZone(CardId.EternalSoul) &&
@@ -1412,14 +1414,14 @@ namespace WindBot.Game.AI.Decks
                     AI.SelectCard(CardId.EternalSoul);
                     return true;
                 }
-                AI.SelectCard(CardId.LllusionMagic, CardId.EternalSoul, CardId.DarkMagicalCircle, CardId.MagicianNavigation);
+                AI.SelectCard(CardId.IllusionMagic, CardId.EternalSoul, CardId.DarkMagicalCircle, CardId.MagicianNavigation);
                 return true;
             }
             else
             {
-                if (Bot.HasInMonstersZone(CardId.VentriloauistsClaraAndLucika))
+                if (Bot.HasInMonstersZone(CardId.ClaraAndRushkaTheVentriloduo))
                 {
-                    AI.SelectCard(CardId.VentriloauistsClaraAndLucika);
+                    AI.SelectCard(CardId.ClaraAndRushkaTheVentriloduo);
                     return true;
                 }
                 int Enemy_atk = 0;
@@ -1442,13 +1444,13 @@ namespace WindBot.Game.AI.Decks
                 }
                 bot_atk = GetTotalATK(list);
                 if (Bot.HasInHand(CardId.MagiciansRod)) return false;
-                if (Bot.HasInMonstersZone(CardId.ApprenticeWitchling) && Bot.GetMonsterCount() == 1 && Bot.HasInSpellZone(CardId.EternalSoul))
+                if (Bot.HasInMonstersZone(CardId.WeeWitchesApprentice) && Bot.GetMonsterCount() == 1 && Bot.HasInSpellZone(CardId.EternalSoul))
                     return false;
                 if (Bot.LifePoints <= (Enemy_atk - bot_atk) &&
                     Bot.GetMonsterCount() > 1) return false;
                 if ((Bot.LifePoints - Enemy_atk <= 1000) &&
                     Bot.GetMonsterCount() == 1) return false;
-                AI.SelectCard(CardId.VentriloauistsClaraAndLucika, CardId.SpellbookMagicianOfProphecy, CardId.WindwitchGlassBell, CardId.WindwitchIceBell, CardId.MagiciansRod, CardId.DarkMagician, CardId.MagicianOfLllusion);
+                AI.SelectCard(CardId.ClaraAndRushkaTheVentriloduo, CardId.SpellbookMagicianOfProphecy, CardId.WindwitchGlassBell, CardId.WindwitchIceBell, CardId.MagiciansRod, CardId.DarkMagician, CardId.MagicianOfDarkIllusion);
                 return true;
             }
         }
@@ -1478,7 +1480,7 @@ namespace WindBot.Game.AI.Decks
         {
             if (plan_C) return false;
             if (Util.IsOneEnemyBetterThanValue(2500, false) &&
-                !Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeLllusionMagician))
+                !Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeIllusionMagician))
             {
                 //AI.SelectPlace(Zones.z5, Zones.ExtraMonsterZones);
                 AI.SelectPosition(CardPosition.FaceUpAttack);
@@ -1503,7 +1505,7 @@ namespace WindBot.Game.AI.Decks
         {
             if (plan_C) return false;
             if (Util.IsOneEnemyBetterThanValue(2500, false) &&
-                !Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeLllusionMagician))
+                !Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeIllusionMagician))
             {
                 //AI.SelectPlace(Zones.z5, Zones.ExtraMonsterZones);
                 AI.SelectPosition(CardPosition.FaceUpAttack);
@@ -1530,7 +1532,7 @@ namespace WindBot.Game.AI.Decks
             return false;
         }
 
-        private bool ApprenticeWitchlingsp()
+        private bool WeeWitchesApprenticesp()
         {
             int rod_count = 0;
             foreach (ClientCard rod in Bot.GetMonsters())
@@ -1555,7 +1557,7 @@ namespace WindBot.Game.AI.Decks
                 return true;
             }
             if (Bot.HasInMonstersZone(CardId.MagiciansRod) &&
-                Bot.HasInMonstersZone(CardId.ApprenticeLllusionMagician) &&
+                Bot.HasInMonstersZone(CardId.ApprenticeIllusionMagician) &&
                 (Bot.HasInSpellZone(CardId.EternalSoul) || Bot.HasInSpellZone(CardId.MagicianNavigation))
                 && Duel.Phase == DuelPhase.Main2)
             {
@@ -1568,9 +1570,9 @@ namespace WindBot.Game.AI.Decks
             return false;
         }
 
-        private bool ApprenticeWitchlingeff()
+        private bool WeeWitchesApprenticeeff()
         {
-            AI.SelectCard(CardId.MagiciansRod, CardId.DarkMagician, CardId.ApprenticeLllusionMagician);
+            AI.SelectCard(CardId.MagiciansRod, CardId.DarkMagician, CardId.ApprenticeIllusionMagician);
             return true;
         }
         public override bool OnSelectHand()
@@ -1578,9 +1580,9 @@ namespace WindBot.Game.AI.Decks
             return true;
         }
 
-        private bool VentriloauistsClaraAndLucikasp()
+        private bool ClaraAndRushkaTheVentriloduosp()
         {
-            if (Bot.HasInSpellZone(CardId.LllusionMagic)) return false;
+            if (Bot.HasInSpellZone(CardId.IllusionMagic)) return false;
             if (Bot.HasInMonstersZone(CardId.MagiciansRod) && !Bot.HasInGraveyard(CardId.MagiciansRod) &&
                 (Bot.HasInSpellZone(CardId.EternalSoul) || Bot.HasInSpellZone(CardId.MagicianNavigation)))
             {
@@ -1644,7 +1646,7 @@ namespace WindBot.Game.AI.Decks
                 int lockbird_count = 0;
                 foreach (ClientCard check in Enemy.Graveyard)
                 {
-                    if (check.IsCode(CardId.LockBird))
+                    if (check.IsCode(CardId.DrollAndLockBird))
                         lockbird_count++;
                 }
                 if (lockbird_count != lockbird_done)
@@ -1655,7 +1657,7 @@ namespace WindBot.Game.AI.Decks
                 int ghost_count = 0;
                 foreach (ClientCard check in Enemy.Graveyard)
                 {
-                    if (check.IsCode(CardId.Ghost))
+                    if (check.IsCode(CardId.GhostOgre))
                         ghost_count++;
                 }
                 if (ghost_count != ghost_done)
@@ -1674,7 +1676,7 @@ namespace WindBot.Game.AI.Decks
             {
                 if (dangerous != null && dangerous.IsShouldNotBeTarget() &&
                     (dangerous.Attack > 2500 || dangerous.Defense > 2500) &&
-                    !Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeLllusionMagician))
+                    !Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeIllusionMagician))
                 {
                     plan_C = true;
                     Logger.DebugWriteLine("*********dangerous = " + dangerous.Id);
@@ -1690,14 +1692,14 @@ namespace WindBot.Game.AI.Decks
             count = 0;
             foreach (ClientCard check in Enemy.Graveyard)
             {
-                if (check.IsCode(CardId.LockBird))
+                if (check.IsCode(CardId.DrollAndLockBird))
                     count++;
             }
             lockbird_done = count;
             count = 0;
             foreach (ClientCard check in Enemy.Graveyard)
             {
-                if (check.IsCode(CardId.Ghost))
+                if (check.IsCode(CardId.GhostOgre))
                     count++;
             }
             ghost_done = count;
@@ -1740,12 +1742,12 @@ namespace WindBot.Game.AI.Decks
                 if (attacker.IsCode(CardId.OddEyesAbsoluteDragon, CardId.OddEyesWingDragon))
                     attacker.RealPower = 9999;
             }
-            if ((attacker.IsCode(CardId.DarkMagician, CardId.MagiciansRod, CardId.BigEye, CardId.ApprenticeWitchling)) &&
-                Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeLllusionMagician))
+            if ((attacker.IsCode(CardId.DarkMagician, CardId.MagiciansRod, CardId.BigEye, CardId.WeeWitchesApprentice)) &&
+                Bot.HasInHandOrHasInMonstersZone(CardId.ApprenticeIllusionMagician))
             {
                 attacker.RealPower += 2000;
             }
-            if (attacker.IsCode(CardId.ApprenticeLllusionMagician) && ApprenticeLllusionMagician_count >= 2)
+            if (attacker.IsCode(CardId.ApprenticeIllusionMagician) && ApprenticeLllusionMagician_count >= 2)
             {
                 attacker.RealPower += 2000;
             }
@@ -1766,9 +1768,9 @@ namespace WindBot.Game.AI.Decks
                 big_attack_used = true;
                 return true;
             }
-            if (attacker.IsCode(CardId.ApprenticeLllusionMagician))
+            if (attacker.IsCode(CardId.ApprenticeIllusionMagician))
                 Logger.DebugWriteLine("@@@@@@@@@@@@@@@@@@@ApprenticeLllusionMagician= " + attacker.RealPower);
-            if (Bot.HasInSpellZone(CardId.EternalSoul) && attacker.IsCode(CardId.DarkMagician, CardId.DarkMagicianTheDragonKnight, CardId.MagicianOfLllusion))
+            if (Bot.HasInSpellZone(CardId.EternalSoul) && attacker.IsCode(CardId.DarkMagician, CardId.DarkMagicianTheDragonKnight, CardId.MagicianOfDarkIllusion))
                 return true;
             return base.OnPreBattleBetween(attacker, defender);
         }
@@ -1846,7 +1848,7 @@ namespace WindBot.Game.AI.Decks
                 if (Card.IsAttack())
                     return false;
             }
-            if (Bot.HasInMonstersZone(CardId.ApprenticeLllusionMagician) || (Bot.HasInHand(CardId.ApprenticeLllusionMagician)))
+            if (Bot.HasInMonstersZone(CardId.ApprenticeIllusionMagician) || (Bot.HasInHand(CardId.ApprenticeIllusionMagician)))
             {
                 if (Card.IsAttack())
                     return false;
