@@ -407,7 +407,7 @@ namespace WindBot.Game.AI.Decks
                 };
                 if (!Util.ChainContainsCard(CardId.WakingTheDragon))
                 {
-                    if (!judge && Bot.GetRemainingCount(CardId.GhostOgre, 2) > 0)
+                    if (!judge && Bot.GetRemainingCount(CardId.GhostOgre, 1) > 0)
                     {
                         AI.SelectCard(CardId.GhostOgre);
                         AI.SelectPosition(CardPosition.FaceUpDefence);
@@ -862,7 +862,7 @@ namespace WindBot.Game.AI.Decks
 
         public bool Yellow_eff()
         {
-            if (!Bot.HasInHand(CardId.LightStage) && !Bot.HasInSpellZone(CardId.LightStage) && Bot.GetRemainingCount(CardId.LightStage, 3) > 0)
+            if (!Bot.HasInHand(CardId.LightStage) && !Bot.HasInSpellZone(CardId.LightStage) && Bot.GetRemainingCount(CardId.LightStage, 1) > 0)
             {
                 AI.SelectCard(CardId.LightStage, CardId.Lycoris, CardId.Corobane, CardId.Lilybell, CardId.Reincarnation, CardId.TrickstarMagicalLaurel, CardId.Candina);
                 return true;
@@ -917,7 +917,7 @@ namespace WindBot.Game.AI.Decks
                 }
                 return true;
             }
-            if ((Bot.HasInHand(CardId.Lycoris) || Bot.HasInHand(CardId.LightStage) || Bot.HasInHand(CardId.Candina)) && Bot.GetRemainingCount(CardId.Reincarnation,1) > 0) {
+            if ((Bot.HasInHand(CardId.Lycoris) || Bot.HasInHand(CardId.LightStage) || Bot.HasInHand(CardId.Candina)) && Bot.GetRemainingCount(CardId.Reincarnation,3) > 0) {
                 AI.SelectCard(CardId.Reincarnation, CardId.Lycoris, CardId.Corobane, CardId.TrickstarMagicalLaurel, CardId.Lilybell, CardId.LightStage, CardId.Candina);
                 return true;
             }
@@ -1118,7 +1118,7 @@ namespace WindBot.Game.AI.Decks
         {
             if (crystal_eff_used || Bot.HasInMonstersZone(CardId.CrystronHalqifibrax)) return false;
             if (Bot.GetMonsterCount() == 0 || !Bot.HasInExtra(CardId.CrystronHalqifibrax)) return false;
-            if (Card.IsCode(CardId.GhostOgre) && Bot.GetRemainingCount(CardId.GhostOgre, 2) <= 0) return false;
+            if (Card.IsCode(CardId.GhostOgre) && Bot.GetRemainingCount(CardId.GhostOgre, 1) <= 0) return false;
             int count = 0;
             if (!Card.IsCode(CardId.AshBlossom)) count += 1;
             foreach(ClientCard hand in Bot.Hand)
@@ -1594,6 +1594,7 @@ namespace WindBot.Game.AI.Decks
 
         public bool Borrel_eff()
         {
+            Logger.DebugWriteLine("***Borreload ActivateDescription: " + ActivateDescription);
             if (ActivateDescription == -1) {
                 ClientCard enemy_monster = Enemy.BattlingMonster;
                 if (enemy_monster != null && enemy_monster.HasPosition(CardPosition.Attack))
