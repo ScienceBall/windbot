@@ -11,12 +11,12 @@ namespace WindBot.Game.AI.Decks
     {
         public class CardId
         {
-            public const int MetalSnake = 71197066;
+            public const int GizmekOrochi = 71197066;
             public const int InspectBoarder = 15397015;
             public const int ThunderKingRaiOh = 71564252;
-            public const int AshBlossomAndJoyousSpring =14558127;
+            public const int AshBlossomAndJoyousSpring = 14558127;
             public const int GhostReaperAndWinterCherries = 62015408;
-            public const int GrenMajuDaEizo = 36584821;
+            public const int GrenMajuDaEiza = 36584821;
             public const int MaxxC = 23434538;
             public const int EaterOfMillions = 63845230;
 
@@ -36,26 +36,26 @@ namespace WindBot.Game.AI.Decks
             public const int Crackdown = 36975314;
             public const int AntiSpellFragrance = 58921041;
             public const int ImperialOrder = 61740673;
-            public const int PhatomKnightsSword = 61936647;
-            public const int UnendingNightmare= 69452756;
+            public const int PhantomKnightsSword = 61936647;
+            public const int UnendingNightmare = 69452756;
             public const int SolemnWarning = 84749824;
-            public const int SolemStrike= 40605147;
+            public const int SolemStrike = 40605147;
             public const int SolemnJudgment = 41420027;
             public const int DarkBribe = 77538567;
 
             public const int RaidraptorUltimateFalcon = 86221741;
             public const int BorreloadDragon = 31833038;
-            public const int BirrelswordDragon = 85289965;
+            public const int BorrelswordDragon = 85289965;
             public const int FirewallDragon = 5043010;
             public const int NingirsuTheWorldChaliceWarrior = 30194529;
             public const int TopologicTrisbaena = 72529749;
             public const int KnightmareUnicorn = 38342335;
             public const int KnightmarePhoenix = 2857636;
-            public const int HeavymetalfoesElectrumite= 24094258;
+            public const int HeavymetalfoesElectrumite = 24094258;
             public const int KnightmareCerberus = 75452921;
             public const int CrystronNeedlefiber = 50588353;
-            public const int MissusRadiant= 3987233;
-            public const int BrandishMaidenKagari= 63288573;
+            public const int MissusRadiant = 3987233;
+            public const int BrandishMaidenKagari = 63288573;
             public const int LinkSpider = 98978921;
             public const int Linkuriboh = 41999284;
 
@@ -106,18 +106,18 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.WakingTheDragon, WakingTheDragoneff);
             // normal summon
             AddExecutor(ExecutorType.Summon, CardId.InspectBoarder, InspectBoardersummon);
-            AddExecutor(ExecutorType.Summon, CardId.GrenMajuDaEizo, GrenMajuDaEizosummon);
+            AddExecutor(ExecutorType.Summon, CardId.GrenMajuDaEiza, GrenMajuDaEizasummon);
             AddExecutor(ExecutorType.Summon, CardId.ThunderKingRaiOh, ThunderKingRaiOhsummon);
             AddExecutor(ExecutorType.SpSummon, CardId.BorreloadDragon, BorreloadDragonspsecond);
             AddExecutor(ExecutorType.SpSummon, CardId.EaterOfMillions, EaterOfMillionssp);
 
-            AddExecutor(ExecutorType.Activate, CardId.MetalSnake, MetalSnakesp);
-            AddExecutor(ExecutorType.Activate, CardId.MetalSnake, MetalSnakeeff);
+            AddExecutor(ExecutorType.Activate, CardId.GizmekOrochi, GizmekOrochisp);
+            AddExecutor(ExecutorType.Activate, CardId.GizmekOrochi, GizmekOrochieff);
             //spell
             AddExecutor(ExecutorType.Activate, CardId.Crackdown, Crackdowneff);
             AddExecutor(ExecutorType.Activate, CardId.MoonMirrorShield, MoonMirrorShieldeff);
             AddExecutor(ExecutorType.Activate, CardId.Scapegoat, DefaultScapegoat);
-            AddExecutor(ExecutorType.Activate, CardId.PhatomKnightsSword, PhatomKnightsSwordeff);
+            AddExecutor(ExecutorType.Activate, CardId.PhantomKnightsSword, PhantomKnightsSwordeff);
             AddExecutor(ExecutorType.Repos, MonsterRepos);
             //set
             AddExecutor(ExecutorType.SpellSet, SpellSet);
@@ -321,7 +321,7 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(
                     CardId.EaterOfMillions,
                     CardId.PotOfDesires,
-                    CardId.GrenMajuDaEizo,
+                    CardId.GrenMajuDaEiza,
                     CardId.InspectBoarder,
                     CardId.ThunderKingRaiOh,
                     CardId.Scapegoat,
@@ -336,7 +336,7 @@ namespace WindBot.Game.AI.Decks
                     CardId.InspectBoarder,
                     CardId.ThunderKingRaiOh,
                     CardId.EaterOfMillions,
-                    CardId.GrenMajuDaEizo,
+                    CardId.GrenMajuDaEiza,
                     CardId.Scapegoat
                     );
             else
@@ -391,7 +391,7 @@ namespace WindBot.Game.AI.Decks
             return false;
         }
 
-        private bool PhatomKnightsSwordeff()
+        private bool PhantomKnightsSwordeff()
         {
             if (Card.IsFaceup())
                 return true;
@@ -413,7 +413,7 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectPlace(Zones.z4);
             return true;
         }
-        private bool GrenMajuDaEizosummon()
+        private bool GrenMajuDaEizasummon()
         {
             if (Duel.Turn == 1) return false;           
             if (Bot.MonsterZone[0] == null)
@@ -565,9 +565,9 @@ namespace WindBot.Game.AI.Decks
             return true;
         }
 
-        private bool MetalSnakesp()
+        private bool GizmekOrochisp()
         {
-            if (ActivateDescription == Util.GetStringId(CardId.MetalSnake, 0) && !Bot.HasInMonstersZone(CardId.MetalSnake))
+            if (ActivateDescription == Util.GetStringId(CardId.GizmekOrochi, 0) && !Bot.HasInMonstersZone(CardId.GizmekOrochi))
             {
                 if(Duel.Player == 1 && Duel.Phase >= DuelPhase.BattleStart )
                     return Bot.Deck.Count >= 12;
@@ -577,10 +577,10 @@ namespace WindBot.Game.AI.Decks
             return false;
         }
 
-        private bool MetalSnakeeff()
+        private bool GizmekOrochieff()
         {
             ClientCard target = Util.GetOneEnemyBetterThanMyBest(true, true);
-            if (ActivateDescription == Util.GetStringId(CardId.MetalSnake, 1) && target != null)
+            if (ActivateDescription == Util.GetStringId(CardId.GizmekOrochi, 1) && target != null)
             {
                 AI.SelectCard(new[]
                 {                    
@@ -715,7 +715,7 @@ namespace WindBot.Game.AI.Decks
             for (int i = 0; i < attackers.Count; ++i)
             {
                 ClientCard attacker = attackers[i];
-                if (attacker.IsCode(CardId.BirrelswordDragon, CardId.EaterOfMillions)) return attacker;
+                if (attacker.IsCode(CardId.BorrelswordDragon, CardId.EaterOfMillions)) return attacker;
             }
             return null;
         }
