@@ -27,7 +27,7 @@ namespace WindBot.Game.AI.Decks
             public const int Waboku = 12607053;
             public const int SecretBlast = 18252559;
             public const int JustDesserts = 24068492;
-            public const int SectetBarrel = 27053506;
+            public const int SecretBarrel = 27053506;
             public const int OjamaTrio = 29843091;
             public const int ThreateningRoar = 36361633;
             public const int Ceasefire = 36468556;
@@ -36,7 +36,7 @@ namespace WindBot.Game.AI.Decks
             public const int BalanceOfJudgment = 67443336;
             public const int BlazingMirrorForce = 75249652;
             public const int RingOfDestruction = 83555666;
-            public const int AccuulatedFortune = 98444741;
+            public const int AccumulatedFortune = 98444741;
 
             public const int Linkuriboh = 41999284;
             public const int HarpiesFeatherDuster = 18144506;
@@ -72,7 +72,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.CardOfDemise, CardOfDemiseeff);
             //activate trap
             AddExecutor(ExecutorType.Activate, CardId.BalanceOfJudgment, BalanceOfJudgmenteff);
-            AddExecutor(ExecutorType.Activate, CardId.AccuulatedFortune);
+            AddExecutor(ExecutorType.Activate, CardId.AccumulatedFortune);
             //battle
             AddExecutor(ExecutorType.Activate, CardId.BlazingMirrorForce, BlazingMirrorForceeff);
             AddExecutor(ExecutorType.Activate, CardId.MagicCylinder, MagicCylindereff);
@@ -84,7 +84,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.JustDesserts, JustDessertseff);            
             AddExecutor(ExecutorType.Activate, CardId.Ceasefire, Ceasefireeff);
             AddExecutor(ExecutorType.Activate, CardId.SecretBlast, SecretBlasteff);
-            AddExecutor(ExecutorType.Activate, CardId.SectetBarrel, SectetBarreleff);
+            AddExecutor(ExecutorType.Activate, CardId.SecretBarrel, SecretBarreleff);
             AddExecutor(ExecutorType.Activate, CardId.RecklessGreed, RecklessGreedeff);
             AddExecutor(ExecutorType.Activate, CardId.OjamaTrio, OjamaTrioeff);
             AddExecutor(ExecutorType.Activate, CardId.AbouluteKingBackJack, AbouluteKingBackJackeff);
@@ -116,7 +116,7 @@ namespace WindBot.Game.AI.Decks
                 CardId.SecretBlast,
                 CardId.JustDesserts,
                 CardId.OjamaTrio,
-                CardId.SectetBarrel,
+                CardId.SecretBarrel,
                 CardId.ThreateningRoar,
                 CardId.Ceasefire,
                 CardId.RecklessGreed,
@@ -124,7 +124,7 @@ namespace WindBot.Game.AI.Decks
                 CardId.BalanceOfJudgment,
                 CardId.BlazingMirrorForce,
                 CardId.RingOfDestruction,
-                CardId.AccuulatedFortune,
+                CardId.AccumulatedFortune,
     };
         }
         public int[] AbouluteKingBackJack_List_1()
@@ -139,10 +139,10 @@ namespace WindBot.Game.AI.Decks
             CardId.SecretBlast,
             CardId.JustDesserts,
             CardId.OjamaTrio,
-            CardId.SectetBarrel,
+            CardId.SecretBarrel,
             CardId.Ceasefire,
             CardId.BalanceOfJudgment,
-            CardId.AccuulatedFortune,
+            CardId.AccumulatedFortune,
         };
     }
         public int[] AbouluteKingBackJack_List_2()
@@ -164,10 +164,10 @@ namespace WindBot.Game.AI.Decks
             CardId.SecretBlast,
             CardId.JustDesserts,
             CardId.OjamaTrio,
-            CardId.SectetBarrel,
+            CardId.SecretBarrel,
             CardId.Ceasefire,
             CardId.BalanceOfJudgment,
-            CardId.AccuulatedFortune,
+            CardId.AccumulatedFortune,
         };
         }
         public int[] now_List()
@@ -178,7 +178,7 @@ namespace WindBot.Game.AI.Decks
                 CardId.Waboku,
                 CardId.SecretBlast,
                 CardId.JustDesserts,
-                CardId.SectetBarrel,
+                CardId.SecretBarrel,
                 CardId.ThreateningRoar,
                 CardId.Ceasefire,
                 CardId.RecklessGreed,
@@ -322,7 +322,7 @@ namespace WindBot.Game.AI.Decks
             IList<ClientCard> check = Bot.GetSpells();
             foreach (ClientCard card in check)
             {
-                if (card.IsCode(CardId.AccuulatedFortune))
+                if (card.IsCode(CardId.AccumulatedFortune))
                     HasAccuulatedFortune++;
 
             }
@@ -334,7 +334,7 @@ namespace WindBot.Game.AI.Decks
             }
             foreach (ClientCard card in check)
             {
-                if (card.IsCode(CardId.SectetBarrel))
+                if (card.IsCode(CardId.SecretBarrel))
                     barrel_count++;
 
             }
@@ -578,7 +578,7 @@ namespace WindBot.Game.AI.Decks
             if (Bot.GetHandCount() <1 && Duel.Player==0 && Duel.Phase!=DuelPhase.Standby) return true;
             return false;
         }
-        private bool SectetBarreleff()
+        private bool SecretBarreleff()
         {
             if (DefaultOnBecomeTarget()) return true;
             if (Duel.Player == 0) return false;
@@ -771,7 +771,7 @@ namespace WindBot.Game.AI.Decks
             IList<ClientCard> check = Bot.GetSpells();
             foreach (ClientCard card1 in check)
             {
-                if (card1.IsCode(CardId.AccuulatedFortune))
+                if (card1.IsCode(CardId.AccumulatedFortune))
                     HasAccuulatedFortune++;
 
             }
@@ -783,7 +783,7 @@ namespace WindBot.Game.AI.Decks
             }
             foreach (ClientCard card1 in check)
             {
-                if (card1.IsCode(CardId.SectetBarrel))
+                if (card1.IsCode(CardId.SecretBarrel))
                     barrel_count++;
 
             }
