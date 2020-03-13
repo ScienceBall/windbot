@@ -56,11 +56,11 @@ namespace WindBot.Game.AI.Decks
             public const int KnightmarePheonix = 2857636;
             public const int Borrelsword = 85289965;
 
-            public const int GO_SR = 59438930;
+            public const int GhostOgre = 59438930;
             public const int DarkHole = 53129443;
-            public const int NaturalBeast = 33198837;
-            public const int SwordsmanLV7 = 37267041;
-            public const int RoyalDecreel = 51452091;
+            public const int NaturiaBeast = 33198837;
+            public const int SilentSwordsmanLV7 = 37267041;
+            public const int RoyalDecree = 51452091;
             public const int Anti_Spell = 58921041;
             public const int Hayate = 8491308;
             public const int Raye = 26077387;
@@ -916,14 +916,14 @@ namespace WindBot.Game.AI.Decks
             if (target.Location != CardLocation.SpellZone && target.Location != CardLocation.Hand) return true;
             if (target.IsSpell())
             {
-                if (Enemy.HasInMonstersZone(CardId.NaturalBeast, true) && !Bot.HasInHandOrHasInMonstersZone(CardId.GO_SR) && !isCounter && !Bot.HasInSpellZone(CardId.SolemnStrike)) return false;
+                if (Enemy.HasInMonstersZone(CardId.NaturiaBeast, true) && !Bot.HasInHandOrHasInMonstersZone(CardId.GhostOgre) && !isCounter && !Bot.HasInSpellZone(CardId.SolemnStrike)) return false;
                 if (Enemy.HasInSpellZone(CardId.ImperialOrder, true) || Bot.HasInSpellZone(CardId.ImperialOrder, true)) return false;
-                if (Enemy.HasInMonstersZone(CardId.SwordsmanLV7, true) || Bot.HasInMonstersZone(CardId.SwordsmanLV7, true)) return false;
+                if (Enemy.HasInMonstersZone(CardId.SilentSwordsmanLV7, true) || Bot.HasInMonstersZone(CardId.SilentSwordsmanLV7, true)) return false;
                 return true;
             }
             if (target.IsTrap())
             {
-                if (Enemy.HasInSpellZone(CardId.RoyalDecreel, true) || Bot.HasInSpellZone(CardId.RoyalDecreel, true)) return false;
+                if (Enemy.HasInSpellZone(CardId.RoyalDecree, true) || Bot.HasInSpellZone(CardId.RoyalDecree, true)) return false;
                 return true;
             }
             // how to get here?
