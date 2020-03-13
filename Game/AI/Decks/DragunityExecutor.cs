@@ -25,7 +25,7 @@ namespace WindBot.Game.AI.Decks
             public const int MonsterReborn = 83764718;
             public const int MysticalSpaceTyphoon = 5318639;
             public const int FireFormationTenki = 57103969;
-            public const int DragunitySpearOfDestiny = 60004971;
+            public const int DragunityDivineLance = 60004971;
             public const int DragonRavine = 62265044;
             public const int MirrorForce = 44095762;
             public const int StarlightRoad = 58120309;
@@ -77,7 +77,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.CardsOfConsonance);
             AddExecutor(ExecutorType.Activate, CardId.DragonRavine, DragonRavineEffect);
             AddExecutor(ExecutorType.Activate, CardId.FireFormationTenki, FireFormationTenki);
-            AddExecutor(ExecutorType.Activate, CardId.DragunitySpearOfDestiny);
+            AddExecutor(ExecutorType.Activate, CardId.DragunityDivineLance);
 
             // Summon
             AddExecutor(ExecutorType.Summon, CardId.DragunityDux, DragunityDux);
@@ -144,7 +144,7 @@ namespace WindBot.Game.AI.Decks
             }
             if (tributeId == -1 && Bot.HasInHand(CardId.StardustDragonAssaultMode))
                 tributeId = CardId.StardustDragonAssaultMode;
-            if (tributeId == -1 && Bot.HasInHand(CardId.DragunitySpearOfDestiny))
+            if (tributeId == -1 && Bot.HasInHand(CardId.DragunityDivineLance))
                 tributeId = CardId.StardustDragonAssaultMode;
             if (tributeId == -1 && Bot.HasInHand(CardId.DragonsMirror)
                 && Bot.GetMonsterCount() == 0)
@@ -429,7 +429,7 @@ namespace WindBot.Game.AI.Decks
             if ((Bot.HasInMonstersZone(CardId.AssaultBeast)
                 && Bot.HasInGraveyard(CardId.DragunityPhalanx))
                 || Bot.HasInMonstersZone(CardId.DragunityPhalanx)
-                || Bot.HasInHand(CardId.DragunitySpearOfDestiny))
+                || Bot.HasInHand(CardId.DragunityDivineLance))
             {
                 List<ClientCard> monster_sorted = Bot.GetMonsters();
                 monster_sorted.Sort(CardContainer.CompareCardAttack);
@@ -446,7 +446,7 @@ namespace WindBot.Game.AI.Decks
         {
             return Bot.HasInGraveyard(CardId.DragunityPhalanx) ||
                 (Bot.GetMonsterCount() == 0 && Bot.HasInHand(CardId.DragunityArmaMysletainn) ||
-                Bot.HasInHand(CardId.DragunitySpearOfDestiny));
+                Bot.HasInHand(CardId.DragunityDivineLance));
         }
 
         private bool DragunityPhalanxSet()
