@@ -434,6 +434,7 @@ namespace WindBot.Game.AI
         }
         /// <summary>
         /// Chain common hand traps
+        /// Otherwise same as DefaultBanishFromEnemyGY, but only monsters.
         /// </summary>
         protected bool DefaultCalledByTheGrave()
         {
@@ -458,7 +459,7 @@ namespace WindBot.Game.AI
                     }
                 }
             }
-            return false;
+            return DefaultBanishFromEnemyGY(true);
         }
         /// <summary>
         /// Default InfiniteImpermanence effect
@@ -694,11 +695,13 @@ namespace WindBot.Game.AI
         }
 
         /// <summary>
-        /// if spell/trap is the target or enermy activate HarpiesFeatherDuster
+        /// if spell/trap is the target or enemy activate HarpiesFeatherDuster
         /// </summary>
         protected bool DefaultOnBecomeTarget()
         {
             if (Util.IsChainTarget(Card)) return true;
+            //TODO: Distinguish between effects that destroy all monsters, all spell/traps, or both.
+            //(Because this method has been used for monsters as well.)
             int[] destroyAllList =
             {
                 _CardId.EvilswarmExcitonKnight,
@@ -1087,6 +1090,41 @@ namespace WindBot.Game.AI
                 HonestEffectCount++;
                 return true;
             }
+
+            return false;
+        }
+
+        protected bool DefaultDDCrowEffect()
+        {
+            return DefaultBanishFromEnemyGY(false);
+        }
+
+        /// <summary>
+        /// Banish a card from the opponent's GY that they're targeting with an effect (e.g. Monster Reborn), so that the effect doesn't
+        /// resolve properly.
+        /// </summary>
+        /// <param name="onlyMonsters">If this effect can only target monsters.</param>
+        protected bool DefaultBanishFromEnemyGY(bool onlyMonsters)
+        {
+            //Banish opponent's targeted card from their GY.
+            //Don't banish it if the card that's targeting it is already negated.
+            //TODO: Don't do this redundantly.
+            ChainTarget target = Duel.ChainTargets.FirstOrDefault(chainTarget => chainTarget.TargetingPlayer == 1 && !chainTarget.Targeting.IsDisabled() 
+            && chainTarget.Target.Location == CardLocation.Grave && chainTarget.Target.Controller == 1
+            && (!onlyMonsters || chainTarget.Target.IsMonster()));
+            if (target != null)
+            {
+                Logger.DebugWriteLine("Banishing " + (target.Target.Name ?? "Unknown Card") + " because enemy targeted it with " + (target.Targeting.Name ?? "Unknown Card"));
+                AI.SelectCard(target.Target);
+                return true;
+            }
+
+            //TODO: Banish opponent's card that activated effect to revive itself, etc.
+
+            //TODO: Banish opponent's card that has effect in GY, and where we can prevent the enemy from activating it by banishing it first.
+            //(So not including quick effects that can be activated at any time, etc.)
+            //Should distinguish between effects that could be negated by Called By The Grave on activation, and those that couldn't be
+            //e.g. because they banish themselves as cost.
 
             return false;
         }
