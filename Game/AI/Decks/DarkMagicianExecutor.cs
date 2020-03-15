@@ -653,9 +653,9 @@ namespace WindBot.Game.AI.Decks
             if (Enemy.HasInSpellZone(CardId.HarpiesFeatherDuster) && Card.IsFacedown())
                 return false;
 
-            foreach (ClientCard target in Duel.ChainTargets)
+            foreach (ChainTarget chainTarget in Duel.ChainTargets)
             {
-                if ((target.IsCode(CardId.DarkMagician, CardId.DarkMagicianTheDragonKnight))
+                if ((chainTarget.Target.IsCode(CardId.DarkMagician, CardId.DarkMagicianTheDragonKnight))
                     && Card.IsFacedown())
                 {
                     AI.SelectYesNo(false);

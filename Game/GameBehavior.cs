@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using WindBot.Game.AI;
 using YGOSharp.Network;
@@ -849,6 +850,7 @@ namespace WindBot.Game
 
         private void OnBecomeTarget(BinaryReader packet)
         {
+            ClientCard targeting = _duel.CurrentChain.LastOrDefault();
             int count = packet.ReadInt32();
             for (int i = 0; i < count; ++i)
             {
@@ -856,8 +858,13 @@ namespace WindBot.Game
                 ClientCard card = _duel.GetCard(info.controler, (CardLocation)info.location, info.sequence);
                 if (card == null) continue;
                 if (_debug)
-                    Logger.WriteLine("(" + (CardLocation)info.location + " 's " + (card.Name ?? "UnKnowCard") + " become target)");
-                _duel.ChainTargets.Add(card);
+                    Logger.WriteLine("(" + (CardLocation)info.location + " 's " + (card.Name ?? "Unknown Card") + " became targeted by " + (targeting.Name ?? "Unknown Card") + ")");
+                _duel.ChainTargets.Add(new ChainTarget()
+                {
+                    Target = card,
+                    Targeting = targeting,
+                    TargetingPlayer = _duel.LastChainPlayer
+                });
                 _duel.ChainTargetOnly.Add(card);
             }
         }

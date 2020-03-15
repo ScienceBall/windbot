@@ -314,7 +314,7 @@ namespace WindBot.Game.AI
 
         public bool IsChainTarget(ClientCard card)
         {
-            return Duel.ChainTargets.Any(card.Equals);
+            return Duel.ChainTargets.Any(chainTarget => chainTarget.Target.Equals(card));
         }
 
         public bool IsChainTargetOnly(ClientCard card)
