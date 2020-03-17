@@ -1106,6 +1106,8 @@ namespace WindBot.Game.AI
         /// <param name="onlyMonsters">If this effect can only target monsters.</param>
         protected bool DefaultBanishFromEnemyGY(bool onlyMonsters)
         {
+            //TODO: When I implement more than one of these use cases, I will need to think about the proper order to check for them.
+
             //Banish opponent's targeted card from their GY.
             //Don't banish it if the card that's targeting it is already negated.
             //TODO: Don't do this redundantly.
@@ -1125,6 +1127,10 @@ namespace WindBot.Game.AI
             //(So not including quick effects that can be activated at any time, etc.)
             //Should distinguish between effects that could be negated by Called By The Grave on activation, and those that couldn't be
             //e.g. because they banish themselves as cost.
+
+            //TODO: Based on the April 1st 2020 ruling changes, banish opponent's card that could activate its effect because it was sent to the GY,
+            //before it gets a chance to activate. e.g. Opponent tributes Sangan for cost of CL1, chain D.D. Crow as CL2 to banish it,
+            //preventing Sangan's effect from being activated.
 
             return false;
         }
