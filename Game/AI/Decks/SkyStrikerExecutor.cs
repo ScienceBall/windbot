@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using WindBot;
 using WindBot.Game;
 using WindBot.Game.AI;
+using System.Linq;
 
 namespace WindBot.Game.AI.Decks
 {
@@ -15,6 +16,7 @@ namespace WindBot.Game.AI.Decks
             public const int Kagari = 63288573;
             public const int Shizuku = 90673288;
             public const int Hayate = 8491308;
+            public const int Kaina = 12421694;
             public const int Token = 52340445;
 
             public const int Engage = 63166095;
@@ -25,6 +27,7 @@ namespace WindBot.Game.AI.Decks
             public const int Multirole = 24010609;
             public const int HerculesBase = 97616504;
             public const int AreaZero = 50005218;
+            public const int SharkCannon = 51227866;
 
             public const int AshBlossom = 14558127;
             public const int GhostRabbit = 59438930;
@@ -34,6 +37,7 @@ namespace WindBot.Game.AI.Decks
 
             public const int ReinforcementOfTheArmy = 32807846;
             public const int FoolishBurialGoods = 35726888;
+            public const int PotOfAvarice = 67169062;
             public const int UpstartGoblin = 70368879;
             public const int MetalfoesFusion = 73594093;
             public const int TwinTwisters = 43898403;
@@ -42,7 +46,7 @@ namespace WindBot.Game.AI.Decks
 
             public const int HiSpeedroidChanbara = 42110604;
             public const int TopologicBomberDragon = 5821478;
-            public const int TopologicTrisbaena = 72529749;
+            //public const int TopologicTrisbaena = 72529749;
             public const int SummonSorceress = 61665245;
             public const int TroymareUnicorn = 38342335;
             public const int TroymarePhoenix = 2857636;
@@ -50,10 +54,13 @@ namespace WindBot.Game.AI.Decks
             public const int Linkuriboh = 41999284;
         }
 
-        bool KagariSummoned = false;
-        bool ShizukuSummoned = false;
-        bool HayateSummoned = false;
-        ClientCard WidowAnchorTarget = null;
+        private bool KagariSummoned = false;
+        private bool ShizukuSummoned = false;
+        private bool HayateSummoned = false;
+        private bool KainaSummoned = false;
+        private ClientCard WidowAnchorTarget = null;
+        private bool MultiroleUnrespondableUsed = false;
+        private bool AreaZeroExcavated = false;
 
         public SkyStrikerExecutor(GameAI ai, Duel duel)
             : base(ai, duel)
@@ -85,6 +92,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.HornetDrones, HornetDronesEffect);
 
             AddExecutor(ExecutorType.Activate, CardId.WidowAnchor, WidowAnchorEffect);
+            AddExecutor(ExecutorType.Activate, CardId.SharkCannon, SharkCannonEffect);
 
             AddExecutor(ExecutorType.Activate, CardId.HerculesBase, HerculesBaseEffect);
             AddExecutor(ExecutorType.Activate, CardId.AreaZero, AreaZeroEffect);
@@ -113,6 +121,8 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.Activate, CardId.Shizuku, ShizukuEffect);
             AddExecutor(ExecutorType.SpSummon, CardId.Hayate, HayateSummon);
             AddExecutor(ExecutorType.Activate, CardId.Hayate, HayateEffect);
+            AddExecutor(ExecutorType.SpSummon, CardId.Kaina, KainaSummon);
+            AddExecutor(ExecutorType.Activate, CardId.Kaina, KainaEffect);
 
             AddExecutor(ExecutorType.SpSummon, CardId.TopologicBomberDragon, Util.IsTurn1OrMain2);
 
@@ -122,6 +132,7 @@ namespace WindBot.Game.AI.Decks
             AddExecutor(ExecutorType.SpellSet, CardId.SolemnJudgment);
             AddExecutor(ExecutorType.SpellSet, CardId.SolemnWarning);
             AddExecutor(ExecutorType.SpellSet, CardId.WidowAnchor);
+            AddExecutor(ExecutorType.SpellSet, CardId.SharkCannon);
             AddExecutor(ExecutorType.SpellSet, CardId.HerculesBase);
 
             AddExecutor(ExecutorType.SpellSet, CardId.TwinTwisters, HandFull);
@@ -129,6 +140,7 @@ namespace WindBot.Game.AI.Decks
 
             //
             AddExecutor(ExecutorType.Activate, CardId.MetalfoesFusion);
+            AddExecutor(ExecutorType.Activate, CardId.PotOfAvarice, PotOfAvariceEffect);
             AddExecutor(ExecutorType.Activate, CardId.Multirole, MultiroleEPEffect);
 
             AddExecutor(ExecutorType.Repos, DefaultMonsterRepos);
@@ -145,7 +157,10 @@ namespace WindBot.Game.AI.Decks
             KagariSummoned = false;
             ShizukuSummoned = false;
             HayateSummoned = false;
+            KainaSummoned = false;
             WidowAnchorTarget = null;
+            MultiroleUnrespondableUsed = false;
+            AreaZeroExcavated = false;
         }
 
         public override bool OnPreBattleBetween(ClientCard attacker, ClientCard defender)
@@ -187,6 +202,14 @@ namespace WindBot.Game.AI.Decks
                 }
                 else
                     return false;
+            }
+            if (desc == Util.GetStringId(CardId.SharkCannon, 0)) //Summon to our field instead of banishing?
+            {
+                return Duel.Player == 0 ? CanClearMainMonsterZones(1) : true;
+                //TODO: On enemy turn, shouldn't summon to our field if that would turn off Widow Anchor or other Shark Cannon,
+                //unless we need the extra monster to survive the enemies attacks this turn.
+                //(I think? Maybe we always want the monster, so the enemy spends removal on it, and then we use our other cards?)
+                //TODO: Test that this this is the right way round.
             }
 
             return base.OnSelectYesNo(desc);
@@ -233,6 +256,7 @@ namespace WindBot.Game.AI.Decks
             AI.SelectCard(
                 CardId.MetalfoesFusion,
                 CardId.WidowAnchor,
+                CardId.SharkCannon,
                 CardId.Engage,
                 CardId.HornetDrones
                 );
@@ -252,7 +276,8 @@ namespace WindBot.Game.AI.Decks
             IList<int> targets = new[] {
                 CardId.Engage,
                 CardId.HornetDrones,
-                CardId.WidowAnchor
+                CardId.WidowAnchor,
+                CardId.SharkCannon
             };
             AI.SelectCard(targets);
             AI.SelectNextCard(targets);
@@ -400,7 +425,7 @@ namespace WindBot.Game.AI.Decks
                 IList<ClientCard> targets = new List<ClientCard>();
                 foreach(ClientCard card in Bot.GetGraveyardMonsters())
                 {
-                    if (card.IsCode(CardId.Hayate, CardId.Kagari, CardId.Shizuku))
+                    if (card.IsCode(CardId.Hayate, CardId.Kagari, CardId.Shizuku, CardId.Kaina))
                         targets.Add(card);
                 }
                 if (targets.Count > 0)
@@ -438,8 +463,13 @@ namespace WindBot.Game.AI.Decks
 
         private bool AreaZeroEffect()
         {
-            if (Card.Location == CardLocation.Hand || Card.Location == CardLocation.Grave)
+            if (Card.Location == CardLocation.Hand)
             {
+                return DefaultField();
+            }
+            else if (Card.Location == CardLocation.Grave)
+            {
+                //TODO: Select monster to summon?
                 return true;
             }
             foreach (ClientCard target in Bot.GetMonsters())
@@ -447,6 +477,7 @@ namespace WindBot.Game.AI.Decks
                 if (target == WidowAnchorTarget && Duel.Phase == DuelPhase.Main2)
                 {
                     AI.SelectCard(target);
+                    AreaZeroExcavated = true;
                     return true;
                 }
             }
@@ -455,6 +486,7 @@ namespace WindBot.Game.AI.Decks
                 if (target.IsCode(CardId.Raye) && Bot.GetMonstersExtraZoneCount() == 0)
                 {
                     AI.SelectCard(target);
+                    AreaZeroExcavated = true;
                     return true;
                 }
             }
@@ -463,6 +495,7 @@ namespace WindBot.Game.AI.Decks
                 if (!target.IsCode(CardId.AreaZero, CardId.Multirole, CardId.WidowAnchor) && target.IsSpell())
                 {
                     AI.SelectCard(target);
+                    AreaZeroExcavated = true;
                     return true;
                 }
             }
@@ -478,6 +511,7 @@ namespace WindBot.Game.AI.Decks
                     if (target == WidowAnchorTarget && Duel.Phase == DuelPhase.Main2)
                     {
                         AI.SelectCard(target);
+                        MultiroleUnrespondableUsed = true;
                         return true;
                     }
                 }
@@ -486,6 +520,7 @@ namespace WindBot.Game.AI.Decks
                     if (target.IsCode(CardId.Raye) && Bot.GetMonstersExtraZoneCount() == 0)
                     {
                         AI.SelectCard(target);
+                        MultiroleUnrespondableUsed = true;
                         return true;
                     }
                 }
@@ -494,6 +529,7 @@ namespace WindBot.Game.AI.Decks
                     if (target.IsCode(CardId.AreaZero))
                     {
                         AI.SelectCard(target);
+                        MultiroleUnrespondableUsed = true;
                         return true;
                     }
                 }
@@ -502,6 +538,7 @@ namespace WindBot.Game.AI.Decks
                     if (!target.IsCode(CardId.Multirole, CardId.WidowAnchor) && target.IsSpell())
                     {
                         AI.SelectCard(target);
+                        MultiroleUnrespondableUsed = true;
                         return true;
                     }
                 }
@@ -553,17 +590,26 @@ namespace WindBot.Game.AI.Decks
 
         private void RayeSelectTarget()
         {
-            if (!KagariSummoned && Bot.HasInGraveyard(new[] {
+            if (!KainaSummoned && Card == Bot.BattlingMonster && Duel.Player == 1 && Enemy.BattlingMonster != null && Card.RealPower < Enemy.BattlingMonster.RealPower)
+            {
+                //I don't know if it's possible to have Enemy.BattlingMonster be null if it's the enemy turn and the bot has a battling monster.
+                //So the "Enemy.BattlingMonster != null" might be unneeded.
+                AI.SelectCard(CardId.Kaina);
+                KainaSummoned = true;
+            }
+            else if (!KagariSummoned && Bot.HasInGraveyard(new[] {
                 CardId.Engage,
                 CardId.HornetDrones,
                 CardId.WidowAnchor
             }))
             {
                 AI.SelectCard(CardId.Kagari);
+                KagariSummoned = true;
             }
             else
             {
-                AI.SelectCard(CardId.Shizuku, CardId.Kagari, CardId.Hayate);
+                AI.SelectCard(CardId.Shizuku, CardId.Kagari, CardId.Hayate, CardId.Kaina);
+                //TODO: Is there a good way to tell which one did get summoned, and set the appropriate variable?
             }
         }
 
@@ -612,7 +658,7 @@ namespace WindBot.Game.AI.Decks
             if (target != 0)
                 AI.SelectCard(target);
             else
-                AI.SelectCard(CardId.Engage, CardId.HornetDrones, CardId.WidowAnchor);
+                AI.SelectCard(CardId.Engage, CardId.HornetDrones, CardId.WidowAnchor, CardId.SharkCannon);
             return true;
         }
 
@@ -632,6 +678,30 @@ namespace WindBot.Game.AI.Decks
                 AI.SelectCard(CardId.HornetDrones);
             else if (!Bot.HasInGraveyard(CardId.WidowAnchor))
                 AI.SelectCard(CardId.WidowAnchor);
+            else if (!Bot.HasInGraveyard(CardId.SharkCannon))
+                AI.SelectCard(CardId.SharkCannon);
+            return true;
+        }
+
+        private bool KainaSummon()
+        {
+            //Only link summon Kaina if we didn't/couldn't summon anything else to the EMZ.
+            if (Bot.GetMonstersExtraZoneCount() == 0)
+            {
+                KainaSummoned = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool KainaEffect()
+        {
+            ClientCard biggestEnemy = Enemy.MonsterZone.GetHighestAttackMonster(true);
+            if (biggestEnemy != null)
+                AI.SelectCard(biggestEnemy);
             return true;
         }
 
@@ -676,6 +746,31 @@ namespace WindBot.Game.AI.Decks
             return false;
         }
 
+        private bool SharkCannonEffect()
+        {
+            return DefaultBanishFromEnemyGY(true);
+            //TODO: Should probably keep track of monsters we summon with Shark Cannon, since they can't attack.
+            //But it's trickier than with Widow Anchor, since we can keep them for more than one turn.
+            //We would need to stop tracking them when they left the field.
+        }
+
+        private bool PotOfAvariceEffect()
+        {
+            IList<ClientCard> targets = new List<ClientCard>();
+            foreach (ClientCard card in Bot.Graveyard)
+            {
+                if (card.IsExtraCard())
+                    targets.Add(card);
+            }
+            if (targets.Count > 0)
+            {
+                AI.SelectCard(targets);
+            }
+            //If we select less than 5 cards, then the remaining cards will be targeted arbitrarily.
+            //TODO: Make this smarter.
+            return true;
+        }
+
         private bool HandFull()
         {
             return Bot.GetSpellCountWithoutField() < 4 && Bot.Hand.Count > 4;
@@ -698,11 +793,11 @@ namespace WindBot.Game.AI.Decks
 
         private int GetCardToSearch()
         {
-            if (!Bot.HasInHand(CardId.HornetDrones) && Bot.GetRemainingCount(CardId.HornetDrones, 3) > 0)
+            if (!Bot.HasInHand(CardId.HornetDrones) && Bot.GetRemainingCount(CardId.HornetDrones, 1) > 0)
             {
                 return CardId.HornetDrones;
             }
-            else if (Util.GetProblematicEnemyMonster() != null && Bot.GetRemainingCount(CardId.WidowAnchor, 3) > 0)
+            else if (Util.GetProblematicEnemyMonster() != null && Bot.GetRemainingCount(CardId.WidowAnchor, 1) > 0)
             {
                 return CardId.WidowAnchor;
             }
@@ -718,9 +813,13 @@ namespace WindBot.Game.AI.Decks
             {
                 return CardId.Raye;
             }
-            else if (!Bot.HasInHand(CardId.WidowAnchor) && !Bot.HasInSpellZone(CardId.WidowAnchor) && Bot.GetRemainingCount(CardId.WidowAnchor, 3) > 0)
+            else if (!Bot.HasInHand(CardId.WidowAnchor) && !Bot.HasInSpellZone(CardId.WidowAnchor) && Bot.GetRemainingCount(CardId.WidowAnchor, 1) > 0)
             {
                 return CardId.WidowAnchor;
+            }
+            else if (Enemy.GetGraveyardMonsters().Any() && !Bot.HasInHandOrInSpellZone(CardId.SharkCannon) && Bot.GetRemainingCount(CardId.SharkCannon, 3) > 0)
+            {
+                return CardId.SharkCannon;
             }
 
             return 0;
@@ -749,15 +848,42 @@ namespace WindBot.Game.AI.Decks
             return count >= 3;
         }
 
-        private bool DefaultNoExecutor()
+        //I don't know if it's important to care about this or not.
+        private bool CanClearMainMonsterZones(int moreMonsters = 0, bool moreSkyStrikerAce = false)
         {
-            foreach (CardExecutor exec in Executors)
+            int usedMainMonsterZones = moreMonsters;
+            bool skyStrikerAceInMMZ = moreSkyStrikerAce;
+            for (int i = 0; i < 5; i++)
             {
-                if (exec.Type == Type && exec.CardId == Card.Id)
-                    return false;
+                if (Bot.MonsterZone[i] != null)
+                {
+                    usedMainMonsterZones++;
+                    if (Bot.MonsterZone[i].HasSetcode(0x1115)) skyStrikerAceInMMZ = true;
+                }
             }
-            return true;
-        }
+            if (usedMainMonsterZones > 5)
+            {
+                Logger.DebugWriteLine("CanClearMainMonsterZones: Expecting to summon " + moreMonsters + " monsters, but there aren't enough MMZs available.");
+                usedMainMonsterZones = 5;
+            }
 
+            int clearable = 0;
+            //Various ways of clearing the MMZs, in no particular order:
+            //This list is not exhaustive (yet), and it's not 100% precise. But it gives a general idea.
+            //Link summon a Sky Striker Ace Link-1
+            if (skyStrikerAceInMMZ && Bot.GetMonstersExtraZoneCount() == 0 &&
+                ((Bot.HasInExtra(CardId.Kagari) && !KagariSummoned) || (Bot.HasInExtra(CardId.Shizuku) && !ShizukuSummoned)
+                || (Bot.HasInExtra(CardId.Hayate) && !HayateSummoned) || (Bot.HasInExtra(CardId.Kaina) && !KainaSummoned)))
+                clearable++;
+            //Send one to the graveyard with Multirole's effect.
+            if (Bot.HasInHandOrInSpellZone(CardId.Multirole) && !MultiroleUnrespondableUsed)
+                clearable++;
+            //Send one to the graveyard with Area Zero's effect.
+            //(But this might not actually send it, if we don't find any Sky Striker cards in the top 3.)
+            if (Bot.HasInHandOrInSpellZone(CardId.AreaZero) && !AreaZeroExcavated)
+                clearable++;
+
+            return clearable >= usedMainMonsterZones;
+        }
     }
 }
